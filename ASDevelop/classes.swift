@@ -8,6 +8,8 @@
 
 import UIKit
 
+var instructor = Instructor()
+
 class Module {
     var name: String
     var level: Int
@@ -51,8 +53,8 @@ class Module {
 
 struct GlobalModules {
     static var names:[String] = ["Emotion Identification", "Visual Perception", "Motion Control"]
-    static var modulePhotos:[UIImage?] = [UIImage(named: "EmotionModule"), UIImage(named: "VisualModule"), UIImage(named: "MotionModule")]
-    static var startPhotos:[UIImage?] = [UIImage(named: "EmotionStart"), UIImage(named: "VisualStart"), UIImage(named: "MotionStart")]
+    static var modulePhotos:[UIImage?] = [UIImage(named: "EmotionModule"), UIImage(named: "VisualModule"), UIImage(named: "MotorModule")]
+    static var startPhotos:[UIImage?] = [UIImage(named: "EmotionStart"), UIImage(named: "VisualStart"), UIImage(named: "MotorStart")]
 }
 
 class Student {
@@ -90,6 +92,12 @@ class Instructor {
         self.email = email
     }
     
+    init()
+    {
+        self.students = [Student]()
+        self.email = ""
+    }
+    
     func changeEmail(email: String)
     {
         self.email = email
@@ -99,4 +107,76 @@ class Instructor {
     {
         self.students.append(student)
     }
+}
+
+class LandscapeUIImagePickerController: UIImagePickerController {
+    override open var shouldAutorotate: Bool {
+        return true
+    }
+    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .all
+    }
+}
+
+func createProgressBar(hexBGColor: String, hexFGColor: String,width: Int, height: Int, xp: Int) -> UIImage {
+    
+    let newSize = CGSize(width: width, height: height) // set this to what you need
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+    
+    UIColor(hex: hexFGColor).set()
+    var rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:width, height:height))
+    UIRectFill(rect)
+    UIColor(hex: hexBGColor).set()
+    rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: Int(Double(width)*(Double(xp)/100.0)), height:height))
+    UIRectFill(rect)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
+}
+
+extension UIColor {
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        
+        var rgbValue: UInt64 = 0
+        
+        scanner.scanHexInt64(&rgbValue)
+        
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
+    }
+}
+
+func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    let textColor = UIColor.white
+    let textFont = UIFont(name: "Helvetica Bold", size: 16)!
+    
+    let scale = UIScreen.main.scale
+    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    
+    var textFontAttributes = [NSAttributedStringKey: Any]()
+    
+    textFontAttributes = [
+        .font: textFont,
+        .foregroundColor: textColor,
+    ]
+    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+    
+    let rect = CGRect(origin: point, size: image.size)
+    text.draw(in: rect, withAttributes: textFontAttributes)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
 }
