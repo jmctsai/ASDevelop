@@ -146,11 +146,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RDn-bl-WxU">
-                                <rect key="frame" x="72" y="130" width="820" height="571"/>
+                                <rect key="frame" x="72" y="115" width="820" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="820" id="ZNg-4w-gRP"/>
-                                    <constraint firstAttribute="height" constant="571" id="uUf-Uj-VCs"/>
+                                    <constraint firstAttribute="height" constant="615" id="uUf-Uj-VCs"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="10" id="f8d-dz-8cD">
                                     <size key="itemSize" width="383" height="262"/>
@@ -177,7 +177,7 @@
                             <constraint firstItem="RDn-bl-WxU" firstAttribute="centerX" secondItem="p4O-Qm-U0S" secondAttribute="centerX" constant="-30" id="I5v-pj-FqN"/>
                             <constraint firstItem="ntc-66-zTP" firstAttribute="leading" secondItem="W1M-hR-kCc" secondAttribute="leading" constant="30" id="NYk-tc-e5m"/>
                             <constraint firstItem="ara-sB-v3c" firstAttribute="top" secondItem="W1M-hR-kCc" secondAttribute="top" constant="20" id="caQ-fw-6dB"/>
-                            <constraint firstItem="RDn-bl-WxU" firstAttribute="top" secondItem="ntc-66-zTP" secondAttribute="bottom" constant="35" id="stF-T9-fgl"/>
+                            <constraint firstItem="RDn-bl-WxU" firstAttribute="top" secondItem="ntc-66-zTP" secondAttribute="bottom" constant="20" id="stF-T9-fgl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W1M-hR-kCc"/>
                     </view>
@@ -220,10 +220,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4jp-d1-Zrj">
-                                <rect key="frame" x="72" y="130" width="820" height="571"/>
+                                <rect key="frame" x="72" y="115" width="820" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="571" id="IZI-D9-fmo"/>
+                                    <constraint firstAttribute="height" constant="615" id="IZI-D9-fmo"/>
                                     <constraint firstAttribute="width" constant="820" id="SCp-fB-dls"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="10" id="DdT-3M-2Sp">
@@ -246,7 +246,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4jp-d1-Zrj" firstAttribute="top" secondItem="ZP6-tB-eo9" secondAttribute="bottom" constant="35" id="BP5-Jl-qsa"/>
+                            <constraint firstItem="4jp-d1-Zrj" firstAttribute="top" secondItem="ZP6-tB-eo9" secondAttribute="bottom" constant="20" id="BP5-Jl-qsa"/>
                             <constraint firstItem="4jp-d1-Zrj" firstAttribute="centerX" secondItem="6Ls-GN-MDZ" secondAttribute="centerX" constant="-30" id="DEX-3f-633"/>
                             <constraint firstItem="xVN-55-yyO" firstAttribute="trailing" secondItem="ncD-me-VSw" secondAttribute="trailing" constant="20" id="XYb-Hb-UgQ"/>
                             <constraint firstItem="ZP6-tB-eo9" firstAttribute="top" secondItem="xVN-55-yyO" secondAttribute="top" constant="30" id="smu-Qs-oy2"/>
@@ -599,11 +599,11 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FtW-gu-Vhp" userLabel="Modules Collection View">
-                                <rect key="frame" x="72" y="130" width="820" height="571"/>
+                                <rect key="frame" x="72" y="115" width="820" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="820" id="FBu-c8-t3g"/>
-                                    <constraint firstAttribute="height" constant="571" id="tBS-fa-8Tg"/>
+                                    <constraint firstAttribute="height" constant="615" id="tBS-fa-8Tg"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="10" id="he6-BV-Hhf">
                                     <size key="itemSize" width="383" height="262"/>
@@ -628,7 +628,7 @@
                             <constraint firstItem="bi1-6q-b1h" firstAttribute="top" secondItem="1ZQ-SP-agj" secondAttribute="top" constant="20" id="4qu-h2-w5R"/>
                             <constraint firstItem="GwK-Om-oxh" firstAttribute="top" secondItem="1ZQ-SP-agj" secondAttribute="top" constant="30" id="cgL-O8-LA3"/>
                             <constraint firstItem="FtW-gu-Vhp" firstAttribute="centerX" secondItem="wO1-eh-qef" secondAttribute="centerX" constant="-30" id="fHZ-dd-8Qa"/>
-                            <constraint firstItem="FtW-gu-Vhp" firstAttribute="top" secondItem="GwK-Om-oxh" secondAttribute="bottom" constant="35" id="nhR-dk-cZb"/>
+                            <constraint firstItem="FtW-gu-Vhp" firstAttribute="top" secondItem="GwK-Om-oxh" secondAttribute="bottom" constant="20" id="nhR-dk-cZb"/>
                             <constraint firstItem="GwK-Om-oxh" firstAttribute="leading" secondItem="1ZQ-SP-agj" secondAttribute="leading" constant="30" id="pUk-lv-1w6"/>
                             <constraint firstItem="1ZQ-SP-agj" firstAttribute="trailing" secondItem="bi1-6q-b1h" secondAttribute="trailing" constant="20" id="ujr-Ri-tIz"/>
                         </constraints>
