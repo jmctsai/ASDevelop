@@ -12,6 +12,13 @@ import FirebaseAuth
 class StudentProgressViewController: UIViewController {
     
     @IBOutlet weak var StudentProgressTitleField: UILabel!
+    @IBOutlet weak var GraphImageView: UIImageView!
+    
+    @IBOutlet weak var GraphYText4: UITextField!
+    @IBOutlet weak var GraphYText3: UITextField!
+    @IBOutlet weak var GraphYText2: UITextField!
+    @IBOutlet weak var GraphYText1: UITextField!
+    @IBOutlet weak var GraphYText0: UITextField!
     
     var studentIndex:Int?
     
