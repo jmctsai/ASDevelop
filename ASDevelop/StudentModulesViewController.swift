@@ -63,6 +63,10 @@ class StudentModulesViewController: UIViewController, UICollectionViewDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func progressIconTapped(_ sender: Any) {
+        presentStudentProgress()
+    }
+    
     @IBAction func unwindToStudentModules(segue: UIStoryboardSegue) {
         
     }
@@ -131,6 +135,17 @@ class StudentModulesViewController: UIViewController, UICollectionViewDelegate, 
         
         //Change the view to the new view
         self.present(NewModuleViewController, animated: true, completion: nil)
+    }
+    
+    func presentStudentProgress() {
+        
+        //Create the new view
+        let NewStudentProgressViewController:StudentProgressViewController = storyboard!.instantiateViewController(withIdentifier: "NewStudentProgressViewController") as! StudentProgressViewController
+        
+        NewStudentProgressViewController.studentIndex = studentIndex!
+        
+        //Change the view to the new view
+        self.present(NewStudentProgressViewController, animated: true, completion: nil)
     }
     
 }

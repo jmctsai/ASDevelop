@@ -189,6 +189,55 @@
             </objects>
             <point key="canvasLocation" x="755" y="120"/>
         </scene>
+        <!--Student Progress View Controller-->
+        <scene sceneID="VTY-QI-vzR">
+            <objects>
+                <viewController storyboardIdentifier="NewStudentProgressViewController" id="SKw-en-Bqn" customClass="StudentProgressViewController" customModule="ASDevelop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Nt-eq-QTB">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="F8v-ve-It8">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Student]'s Progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-Mn-wTZ" userLabel="Students Progress">
+                                <rect key="frame" x="30" y="50" width="392" height="45"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="40"/>
+                                <color key="textColor" red="0.80677992109999996" green="0.83414870500000005" blue="0.90474540000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-Vx-1O8" userLabel="Back">
+                                <rect key="frame" x="947" y="20" width="57" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="9MG-Eg-wg7"/>
+                                    <constraint firstAttribute="height" constant="57" id="fmq-aF-qlf"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="BackButton"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="sq4-Eg-QOq" eventType="touchUpInside" id="ozq-ng-Af6"/>
+                                    <action selector="backButtonTapped:" destination="SKw-en-Bqn" eventType="touchUpInside" id="xCi-rs-G0B"/>
+                                    <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="OBv-MC-GMI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cU6-yk-xNH" firstAttribute="trailing" secondItem="V7F-Vx-1O8" secondAttribute="trailing" constant="20" id="czh-nM-pgd"/>
+                            <constraint firstItem="V7F-Vx-1O8" firstAttribute="top" secondItem="cU6-yk-xNH" secondAttribute="top" constant="20" id="gRW-hV-GXW"/>
+                            <constraint firstItem="HHf-Mn-wTZ" firstAttribute="leading" secondItem="cU6-yk-xNH" secondAttribute="leading" constant="30" id="k8p-tX-Jsh"/>
+                            <constraint firstItem="HHf-Mn-wTZ" firstAttribute="top" secondItem="cU6-yk-xNH" secondAttribute="top" constant="30" id="pDa-bS-rPR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cU6-yk-xNH"/>
+                    </view>
+                    <connections>
+                        <outlet property="StudentProgressTitleField" destination="HHf-Mn-wTZ" id="mOo-oc-ZHR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a8A-8A-j2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1451.953125" y="-552.34375"/>
+        </scene>
         <!--Student Modules View Controller-->
         <scene sceneID="cdg-y6-JbV">
             <objects>
@@ -201,6 +250,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11s-Uk-9eD" userLabel="Progress">
+                                <rect key="frame" x="875" y="20" width="57" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="1xT-a2-efS"/>
+                                    <constraint firstAttribute="width" constant="57" id="gq2-Wv-jVH"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="ProgressIcon"/>
+                                <connections>
+                                    <action selector="progressIconTapped:" destination="sq4-Eg-QOq" eventType="touchUpInside" id="z0R-7M-2HL"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-me-VSw" userLabel="Back">
                                 <rect key="frame" x="947" y="20" width="57" height="57"/>
                                 <constraints>
@@ -213,8 +273,8 @@
                                     <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="Qce-vB-iks"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Student]'s Modules" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP6-tB-eo9" userLabel="Students Modules">
-                                <rect key="frame" x="30" y="50" width="381" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[Student]'s Modules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP6-tB-eo9" userLabel="Students Modules">
+                                <rect key="frame" x="30" y="50" width="542" height="45"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="40"/>
                                 <color key="textColor" red="0.80677992109999996" green="0.83414870500000005" blue="0.90474540000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -246,9 +306,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="11s-Uk-9eD" firstAttribute="top" secondItem="xVN-55-yyO" secondAttribute="top" constant="20" id="885-gL-4hO"/>
                             <constraint firstItem="4jp-d1-Zrj" firstAttribute="top" secondItem="ZP6-tB-eo9" secondAttribute="bottom" constant="20" id="BP5-Jl-qsa"/>
                             <constraint firstItem="4jp-d1-Zrj" firstAttribute="centerX" secondItem="6Ls-GN-MDZ" secondAttribute="centerX" constant="-30" id="DEX-3f-633"/>
                             <constraint firstItem="xVN-55-yyO" firstAttribute="trailing" secondItem="ncD-me-VSw" secondAttribute="trailing" constant="20" id="XYb-Hb-UgQ"/>
+                            <constraint firstItem="ncD-me-VSw" firstAttribute="leading" secondItem="11s-Uk-9eD" secondAttribute="trailing" constant="15" id="hrj-J4-BzG"/>
                             <constraint firstItem="ZP6-tB-eo9" firstAttribute="top" secondItem="xVN-55-yyO" secondAttribute="top" constant="30" id="smu-Qs-oy2"/>
                             <constraint firstItem="ZP6-tB-eo9" firstAttribute="leading" secondItem="xVN-55-yyO" secondAttribute="leading" constant="30" id="svH-oM-nBg"/>
                             <constraint firstItem="ncD-me-VSw" firstAttribute="top" secondItem="xVN-55-yyO" secondAttribute="top" constant="20" id="yj6-um-8We"/>
@@ -262,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sy-Ta-Az8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="120"/>
+            <point key="canvasLocation" x="1453.7109375" y="119.53125"/>
         </scene>
         <!--Module Start View Controller-->
         <scene sceneID="324-oP-zlE">
@@ -903,6 +965,7 @@
         <image name="EmotionStart" width="434" height="320"/>
         <image name="LogoBig" width="327" height="327"/>
         <image name="ModuleDoneBackground" width="1024" height="768"/>
+        <image name="ProgressIcon" width="56" height="56"/>
         <image name="Start" width="337" height="72"/>
     </resources>
 </document>
