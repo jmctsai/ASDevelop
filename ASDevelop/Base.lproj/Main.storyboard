@@ -221,56 +221,138 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GraphTemplate" translatesAutoresizingMaskIntoConstraints="NO" id="rtn-CJ-4Wm">
-                                <rect key="frame" x="75" y="194" width="875" height="524"/>
+                                <rect key="frame" x="75" y="202" width="875" height="524"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="875" id="Q2b-UU-Kdb"/>
                                     <constraint firstAttribute="height" constant="524" id="j1T-p0-lu6"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A1X-mc-nbj" userLabel="GraphYAxisText4">
-                                <rect key="frame" x="79" y="242" width="73" height="30"/>
+                                <rect key="frame" x="79" y="251" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469065456" green="0.49874853825581844" blue="0.51584659895131013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYJ-oN-ZXY" userLabel="GraphYAxisText3">
-                                <rect key="frame" x="79" y="424" width="73" height="30"/>
+                                <rect key="frame" x="79" y="433" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="25" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bii-Oo-I1L" userLabel="GraphYAxisText1">
-                                <rect key="frame" x="79" y="514" width="73" height="30"/>
+                                <rect key="frame" x="79" y="523" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmc-mT-p6x" userLabel="GraphYAxisText0">
-                                <rect key="frame" x="79" y="605" width="73" height="30"/>
+                                <rect key="frame" x="79" y="614" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="75" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-ZU-8Mg" userLabel="GraphYAxisText2">
-                                <rect key="frame" x="79" y="331" width="73" height="30"/>
+                                <rect key="frame" x="79" y="340" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6k-Dl-KOm">
+                                <rect key="frame" x="92" y="123" width="182" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="L3m-9P-Wdg"/>
+                                    <constraint firstAttribute="width" constant="182" id="yRC-09-BZ6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="  Weekly" backgroundImage="DropdownShort">
+                                    <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="rateButtonPressed:" destination="SKw-en-Bqn" eventType="touchUpInside" id="RYq-gX-ZOi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idR-ZO-dBW">
+                                <rect key="frame" x="304" y="123" width="341" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="341" id="9y2-tH-gAh"/>
+                                    <constraint firstAttribute="height" constant="39" id="Y3X-28-vN8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="  All Modules" backgroundImage="DropdownLong">
+                                    <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="modulesButtonPressed:" destination="SKw-en-Bqn" eventType="touchUpInside" id="HpG-dK-hSm"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qK2-yP-Sxc">
+                                <rect key="frame" x="92" y="162" width="182" height="128"/>
+                                <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="390" id="3ih-Dk-abL"/>
+                                    <constraint firstAttribute="width" constant="182" id="NRF-Sq-QhX"/>
+                                </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" red="0.98535235371783825" green="1" blue="0.99055601173883456" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rateCell" rowHeight="39" id="kvB-wE-9Ec">
+                                        <rect key="frame" x="0.0" y="28" width="182" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kvB-wE-9Ec" id="j4X-Xz-mzf">
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="38.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezT-h9-F1M">
+                                <rect key="frame" x="304" y="162" width="341" height="128"/>
+                                <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="390" id="jFE-0V-DKf"/>
+                                    <constraint firstAttribute="width" constant="341" id="ujN-fK-vSx"/>
+                                </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="modulesCell" rowHeight="39" id="U3p-n9-nTV">
+                                        <rect key="frame" x="0.0" y="28" width="341" height="39"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U3p-n9-nTV" id="788-Qu-0Dt">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="38.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qK2-yP-Sxc" firstAttribute="leading" secondItem="cU6-yk-xNH" secondAttribute="leading" constant="92" id="AJT-pj-mAv"/>
+                            <constraint firstItem="ezT-h9-F1M" firstAttribute="leading" secondItem="qK2-yP-Sxc" secondAttribute="trailing" constant="30" id="ENI-M1-Eyf"/>
+                            <constraint firstItem="qK2-yP-Sxc" firstAttribute="top" secondItem="u6k-Dl-KOm" secondAttribute="bottom" id="NVO-z0-bz3"/>
+                            <constraint firstItem="idR-ZO-dBW" firstAttribute="leading" secondItem="u6k-Dl-KOm" secondAttribute="trailing" constant="30" id="WLc-BF-SXH"/>
+                            <constraint firstItem="u6k-Dl-KOm" firstAttribute="leading" secondItem="cU6-yk-xNH" secondAttribute="leading" constant="92" id="Ysd-rN-Pnh"/>
+                            <constraint firstItem="idR-ZO-dBW" firstAttribute="top" secondItem="HHf-Mn-wTZ" secondAttribute="bottom" constant="28" id="ZY9-cc-sf4"/>
                             <constraint firstItem="cU6-yk-xNH" firstAttribute="trailing" secondItem="V7F-Vx-1O8" secondAttribute="trailing" constant="20" id="czh-nM-pgd"/>
                             <constraint firstItem="rtn-CJ-4Wm" firstAttribute="centerX" secondItem="2Nt-eq-QTB" secondAttribute="centerX" id="d2n-7X-eOj"/>
                             <constraint firstItem="V7F-Vx-1O8" firstAttribute="top" secondItem="cU6-yk-xNH" secondAttribute="top" constant="20" id="gRW-hV-GXW"/>
                             <constraint firstItem="HHf-Mn-wTZ" firstAttribute="leading" secondItem="cU6-yk-xNH" secondAttribute="leading" constant="30" id="k8p-tX-Jsh"/>
                             <constraint firstItem="HHf-Mn-wTZ" firstAttribute="top" secondItem="cU6-yk-xNH" secondAttribute="top" constant="30" id="pDa-bS-rPR"/>
-                            <constraint firstItem="cU6-yk-xNH" firstAttribute="bottom" secondItem="rtn-CJ-4Wm" secondAttribute="bottom" constant="50" id="s7i-cH-CJo"/>
+                            <constraint firstItem="ezT-h9-F1M" firstAttribute="top" secondItem="idR-ZO-dBW" secondAttribute="bottom" id="qb2-pn-o0V"/>
+                            <constraint firstItem="cU6-yk-xNH" firstAttribute="bottom" secondItem="rtn-CJ-4Wm" secondAttribute="bottom" constant="42" id="s7i-cH-CJo"/>
+                            <constraint firstItem="u6k-Dl-KOm" firstAttribute="top" secondItem="HHf-Mn-wTZ" secondAttribute="bottom" constant="28" id="vx9-Km-ApX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cU6-yk-xNH"/>
                     </view>
@@ -281,6 +363,10 @@
                         <outlet property="GraphYText2" destination="hYJ-oN-ZXY" id="UWc-VC-6Z3"/>
                         <outlet property="GraphYText3" destination="NNX-ZU-8Mg" id="Prs-IP-iff"/>
                         <outlet property="GraphYText4" destination="A1X-mc-nbj" id="AjY-Cf-Pz3"/>
+                        <outlet property="ModulesDropdown" destination="idR-ZO-dBW" id="iAx-NV-YZl"/>
+                        <outlet property="ModulesTableView" destination="ezT-h9-F1M" id="2De-73-S7V"/>
+                        <outlet property="RateDropdown" destination="u6k-Dl-KOm" id="4np-AB-VWX"/>
+                        <outlet property="RateTableView" destination="qK2-yP-Sxc" id="HJ4-o6-GZJ"/>
                         <outlet property="StudentProgressTitleField" destination="HHf-Mn-wTZ" id="mOo-oc-ZHR"/>
                     </connections>
                 </viewController>
@@ -524,6 +610,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-ya-cqO">
                                 <rect key="frame" x="224" y="160" width="564" height="43"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="564" id="smf-WA-1wL"/>
                                     <constraint firstAttribute="height" constant="43" id="xoe-U8-8Q3"/>
                                 </constraints>
                             </imageView>
@@ -1012,6 +1099,8 @@
         <image name="Background" width="1025" height="768"/>
         <image name="Continue" width="327" height="70"/>
         <image name="DoneButton" width="36" height="28"/>
+        <image name="DropdownLong" width="341" height="39"/>
+        <image name="DropdownShort" width="182" height="39"/>
         <image name="EmotionStart" width="434" height="320"/>
         <image name="GraphTemplate" width="877" height="526"/>
         <image name="LogoBig" width="327" height="327"/>
