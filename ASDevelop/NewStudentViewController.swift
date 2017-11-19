@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -18,6 +19,8 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
+    
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: Any) {
-        
+
         // Hide the keyboard.
         firstNameTextField.resignFirstResponder()
         lastNameTextField.resignFirstResponder()
@@ -44,31 +47,31 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = LandscapeUIImagePickerController()
-        
+
         // Only allow photos to be picked, not taken.
         imagePickerController.sourceType = .photoLibrary
-        
+
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
     }
- 
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
+
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        
+
         // Set photoImageView to display the selected image.
         studentPhoto = createStudentImage(image: selectedImage)
         AddAPhotoButton.setImage(createNewImage(image: selectedImage), for: .normal)
-        
+
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
@@ -104,6 +107,18 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         
         //Pass student class to logged in module
         instructor.students.append(student)
+        
+
+        let ref = Database.database().reference()
+        let usersReference = ref.child("Students").childByAutoId()
+        let values = ["First Name": firstName, "Last Name": lastName, "Age": ageText]
+        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err)
+                return
+            }
+            print("Saved student data successfully into Firebase DB")
+        })
         
         //Go back to student module
         dismiss(animated: true, completion: nil)

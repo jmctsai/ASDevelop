@@ -16,6 +16,8 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var userPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    var ref: DatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         userEmailTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -55,27 +57,24 @@ class RegisterPageViewController: UIViewController {
                     print(firebaseError.localizedDescription)
                     //ERRORS (to be added)
                     //https://firebase.google.com/docs/auth/ios/errors
+                    //"Email already in Use"
                     self.displayMyAlertMessage(userMessage: "Registration Failed.. Please Try Again")
                     return
                 }
                 
-                guard let uid = user?.uid else{
-                    return
-                }
-                
-                let ref = Database.database().reference(fromURL: "https://asdevelop-group03.firebaseio.com/")
-                let usersReference = ref.child("users").child(uid)
-                let values = ["email": userEmail]
-                //let values = ["name": userName, "email": userEmail]
+                let ref = Database.database().reference()
+                //let usersReference = ref.child("Instructors").child(uid)
+                let usersReference = ref.child("Instructors").childByAutoId()
+                let values = ["Email": userEmail]
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                     if err != nil {
                         print(err)
                         return
                     }
-                print("Saved user successfully into Firebase DB")
+                print("Saved instructors successfully into Firebase DB")
                 })
             })
-                
+            
             self.displayMyAlertMessage(userMessage: "You are successfully registered")
             return
             }
