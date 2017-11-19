@@ -53,6 +53,7 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
         self.ModulesTableView.delegate = self
         ModulesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "modulesCell")
         
+        /*
         var bounds = RateTableView.frame
         RateTableView.frame = CGRect(x: bounds.origin.x,
                                       y: bounds.origin.y,
@@ -64,6 +65,7 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
                                          y: bounds.origin.y,
                                          width: bounds.size.width,
                                          height: CGFloat(39 * modulesArray.count))
+        */
         
         var px = 1 / UIScreen.main.scale
         var frame = CGRect(x: 0, y: 0,width:  RateTableView.frame.size.width, height: px)
@@ -76,6 +78,9 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
         line = UIView(frame: frame)
         ModulesTableView.tableHeaderView = line
         line.backgroundColor = ModulesTableView.separatorColor
+        
+        ModulesTableView.isHidden = true
+        RateTableView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
