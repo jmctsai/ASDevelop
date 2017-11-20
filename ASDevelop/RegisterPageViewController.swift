@@ -63,13 +63,11 @@ class RegisterPageViewController: UIViewController {
                     return
                 }
                 
+                //USER REFERENCEING USER ID/////////////////////
                 let ref = Database.database().reference()
-                //let userID: String = Auth.auth().currentUser!.uid
-                
                 guard let uid = user?.uid else{
                     return
                 }
-                
                 let usersReference = ref.child("Instructors").child(uid)
                 let instructorNode = ["Email": userEmail]
                 usersReference.updateChildValues(instructorNode, withCompletionBlock: { (err, ref) in
@@ -79,6 +77,7 @@ class RegisterPageViewController: UIViewController {
                     }
                 print("Saved instructors successfully into Firebase DB")
                 })
+                ///////////////////////////////////////////////
             })
             
             self.displayMyAlertMessage(userMessage: "You are successfully registered")

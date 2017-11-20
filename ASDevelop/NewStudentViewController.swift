@@ -109,7 +109,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         //Pass student class to logged in module
         instructor.students.append(student)
         
-
+        //REFERENCEING USER ID FOR NESTING IN DATABASE////////////////////////
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
         let usersReference = ref.child("Instructors").child(userID).child("Student").childByAutoId()
@@ -123,6 +123,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             }
             print("Saved student data successfully into Firebase DB")
         })
+        //////////////////////////////////////////////////////////////////////
         
         //Go back to student module
         dismiss(animated: true, completion: nil)
