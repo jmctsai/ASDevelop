@@ -121,13 +121,15 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
 
 func createStudentImage(image: UIImage) -> UIImage {
     let bottomImage = UIImage(named: "ImageBase.png")!
-    let topImage = image
+    let topMask = UIImage(named: "StudentMask.png")!
+    let studentImage = image
     
     let newSize = CGSize(width:383, height:261) // set this to what you need
     UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
     
-    topImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:383, height:227)))
+    studentImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:383, height:227)))
     bottomImage.draw(in: CGRect(origin: CGPoint(x: 0,y :227), size: CGSize(width:383, height:34)))
+    topMask.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:383, height:14)))
     
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
@@ -137,6 +139,7 @@ func createStudentImage(image: UIImage) -> UIImage {
 
 func createNewImage(image: UIImage) -> UIImage {
     let bottomImage = UIImage(named: "AddPhoto.png")!
+    let topMask = UIImage(named: "StudentMask.png")!
     let topImage = image
     
     let newSize = CGSize(width:337, height:230) // set this to what you need
@@ -144,6 +147,7 @@ func createNewImage(image: UIImage) -> UIImage {
     
     bottomImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:337, height:230)))
     topImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:337, height:199)))
+    topMask.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width:337, height:12)))
     
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()

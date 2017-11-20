@@ -16,6 +16,7 @@ class Module {
     var xp: Int
     var modulePhoto: UIImage?
     var startPhoto: UIImage?
+    var timedXP: TimedXP
     
     init(name: String, level: Int, modulePhoto: UIImage?, startPhoto: UIImage?, xp: Int)
     {
@@ -24,6 +25,14 @@ class Module {
         self.modulePhoto = modulePhoto
         self.startPhoto = startPhoto
         self.xp = xp
+        if xp > 0
+        {
+            self.timedXP = TimedXP(xp: xp)
+        }
+        else
+        {
+            self.timedXP = TimedXP()
+        }
     }
     
     init(num: Int)
@@ -33,6 +42,7 @@ class Module {
         self.startPhoto = GlobalModules.startPhotos[num]
         self.level = 1
         self.xp = 0
+        self.timedXP = TimedXP()
     }
     
     private func levelUp()
@@ -45,11 +55,39 @@ class Module {
     func addXP(xp: Int)
     {
         self.xp = self.xp + xp
+        self.timedXP.addXP(xp: xp)
         if self.xp >= 100
         {
             self.levelUp()
             self.xp = self.xp - 100
         }
+    }
+}
+
+class TimedXP {
+    var list : [Int]
+    var date : [Date]
+    var count : Int
+    
+    init()
+    {
+        self.list = [Int]()
+        self.date = [Date]()
+        self.count = 0
+    }
+    
+    init(xp: Int)
+    {
+        self.list = [xp]
+        self.date = [Date()]
+        self.count = 1
+    }
+    
+    func addXP(xp: Int)
+    {
+        self.list.append(xp)
+        self.date.append(Date())
+        self.count = self.count + 1
     }
 }
 
