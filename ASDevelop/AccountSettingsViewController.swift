@@ -15,6 +15,7 @@ class AccountSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Change the volume slider to the current value
         volumeSlider.value = instructor.volume
     }
     
@@ -29,7 +30,7 @@ class AccountSettingsViewController: UIViewController {
     }
     
     @IBAction func changeSettingsButtonPressed(_ sender: Any) {
-        //Assign the new volume to instructor
+        //Save the volume slider value
         instructor.volume = volumeSlider.value
         // go back to classroom
         dismiss(animated: true, completion: nil)

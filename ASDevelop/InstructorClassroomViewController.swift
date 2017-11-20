@@ -32,7 +32,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         
         for student in instructor.students {
             let displayImage = student.photo
-            let displayText = student.firstName + ", " + String(instructor.students[0].age) as NSString
+            let displayText = student.firstName + ", " + String(student.age) as NSString
             photoArray.append(textToImage(drawText: displayText, inImage: displayImage!, atPoint: CGPoint(x: 15,y: 235)))
         }
         
