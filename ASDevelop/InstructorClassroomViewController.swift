@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
     var MainLoginViewController:MainLoginViewController?
     var photoArray = [textToImage(drawText: "+ Add Student", inImage: UIImage(named:"AddButton.png")!, atPoint: CGPoint(x: 15,y: 235))]
@@ -21,6 +22,8 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         super.viewDidLoad()
         self.StudentCollectionView.delegate = self
         self.StudentCollectionView.dataSource = self
+
+        initializeInstructor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +67,44 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    //Initialize the new instructor class
+    func initializeInstructor() {
+        instructor = Instructor()
+    
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogout),with: nil, afterDelay: 0)
+        }else{
+            let userID = Auth.auth().currentUser?.uid
+            Database.database().reference().child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists(){
+                    //print (userID)
+                    print (snapshot)
+                    //print (snapshot.value)
+                    //print (snapshot.key)
+
+                    
+                    
+                    //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+                
+                }else{
+                    print("snapshot does not exist")
+                }
+               
+                
+            }, withCancel: nil)
+        }
+        
+    }
+    
+    @objc func handleLogout(){
+        do{
+            try Auth.auth().signOut()
+        }catch let logoutError {
+            print(logoutError)
+        }
     }
     
     @IBAction func logoutTapped(_ sender: Any) {
