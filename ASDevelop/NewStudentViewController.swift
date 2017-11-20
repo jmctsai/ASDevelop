@@ -111,9 +111,12 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         
 
         let ref = Database.database().reference()
-        let usersReference = ref.child("Students").childByAutoId()
-        let values = ["First Name": firstName, "Last Name": lastName, "Age": ageText]
-        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+        let userID = Auth.auth().currentUser!.uid
+        let usersReference = ref.child("Instructors").child(userID).child("Student").childByAutoId()
+        let studentNode = ["First_Name": firstName,
+                      "Last_Name": lastName,
+                      "Age": ageText]
+        usersReference.updateChildValues(studentNode, withCompletionBlock: { (err, ref) in
             if err != nil {
                 print(err)
                 return

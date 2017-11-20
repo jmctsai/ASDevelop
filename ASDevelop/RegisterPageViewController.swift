@@ -64,10 +64,15 @@ class RegisterPageViewController: UIViewController {
                 }
                 
                 let ref = Database.database().reference()
-                //let usersReference = ref.child("Instructors").child(uid)
-                let usersReference = ref.child("Instructors").childByAutoId()
-                let values = ["Email": userEmail]
-                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                //let userID: String = Auth.auth().currentUser!.uid
+                
+                guard let uid = user?.uid else{
+                    return
+                }
+                
+                let usersReference = ref.child("Instructors").child(uid)
+                let instructorNode = ["Email": userEmail]
+                usersReference.updateChildValues(instructorNode, withCompletionBlock: { (err, ref) in
                     if err != nil {
                         print(err)
                         return
