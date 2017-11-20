@@ -54,6 +54,9 @@ class ModuleStartViewController: UIViewController {
         if instructor.students[studentIndex].modules[moduleIndex].name == GlobalModules.names[0] {
             presentEmotionRecognitionScreen()
         }
+        else if instructor.students[studentIndex].modules[moduleIndex].name == GlobalModules.names[1] {
+            presentVisualPerceptionScreen()
+        }
     }
     
     @IBAction func unwindToModuleStart(segue: UIStoryboardSegue) {
@@ -72,6 +75,21 @@ class ModuleStartViewController: UIViewController {
         
         //Change the view to the new view
         self.present(EmotionRecognitionViewController, animated: true, completion: nil)
+    }
+    
+    //added by alex
+    func presentVisualPerceptionScreen(){
+        
+        //Create the new view
+        let VisualPerceptionViewController:VisualPerceptionViewController = storyboard!.instantiateViewController(withIdentifier: "NewVisualPerceptionViewController") as! VisualPerceptionViewController
+        
+        //Assign the instructor class to the new logged in view
+        VisualPerceptionViewController.studentIndex = studentIndex
+        VisualPerceptionViewController.moduleIndex = moduleIndex
+        
+        //Change the view to the new view
+        self.present(VisualPerceptionViewController, animated: true, completion: nil)
+        
     }
     
 }

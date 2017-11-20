@@ -30,6 +30,7 @@
 		4E4D773EE2081955D9C28A79 /* Pods_ASDevelopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2558C9DF05B80FBEB5EF7065 /* Pods_ASDevelopUITests.framework */; };
 		C614BB3526D767812C71C606 /* Pods_ASDevelop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEA4F1326E2920A510904E7 /* Pods_ASDevelop.framework */; };
 		E07C4279639DB386CFE95EF7 /* Pods_ASDevelopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAFD165636B5137EC931E4C /* Pods_ASDevelopTests.framework */; };
+		E226020C1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		3DEA4F1326E2920A510904E7 /* Pods_ASDevelop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASDevelop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF9FB3C2386746D615D9EDD /* Pods-ASDevelopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASDevelopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASDevelopTests/Pods-ASDevelopTests.release.xcconfig"; sourceTree = "<group>"; };
 		DEAFD165636B5137EC931E4C /* Pods_ASDevelopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASDevelopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualPerceptionGameViewController.swift; sourceTree = "<group>"; };
 		F374209FF2C2607281947F25 /* Pods-ASDevelopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASDevelopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASDevelopTests/Pods-ASDevelopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4D154B0F00E08C1DEC0A47E /* Pods-ASDevelop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASDevelop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASDevelop/Pods-ASDevelop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				19687D131FA3AFA9003E4268 /* LaunchScreen.storyboard */,
 				19687D161FA3AFA9003E4268 /* Info.plist */,
 				19691E891FACE240007FCCC9 /* GoogleService-Info.plist */,
+				E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */,
 			);
 			path = ASDevelop;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				23462B741FB52DE500571EAA /* ModuleFinishViewController.swift in Sources */,
 				237CC5A81FB398E70098E867 /* InstructorClassroomViewController.swift in Sources */,
 				238312691FB1268000DB4993 /* EmotionRecognitionGameViewController.swift in Sources */,
+				E226020C1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift in Sources */,
 				238312661FB1268000DB4993 /* ModuleStartViewController.swift in Sources */,
 				238312631FB1268000DB4993 /* RegisterPageViewController.swift in Sources */,
 				2383126A1FB1268000DB4993 /* NewStudentViewController.swift in Sources */,
