@@ -334,10 +334,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qK2-yP-Sxc">
-                                <rect key="frame" x="92" y="162" width="182" height="140"/>
+                                <rect key="frame" x="92" y="162" width="182" height="135"/>
                                 <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="3ih-Dk-abL"/>
+                                    <constraint firstAttribute="height" constant="135" id="3ih-Dk-abL"/>
                                     <constraint firstAttribute="width" constant="182" id="NRF-Sq-QhX"/>
                                 </constraints>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -357,10 +357,10 @@
                                 <sections/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezT-h9-F1M">
-                                <rect key="frame" x="304" y="162" width="341" height="140"/>
+                                <rect key="frame" x="304" y="162" width="341" height="135"/>
                                 <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="jFE-0V-DKf"/>
+                                    <constraint firstAttribute="height" constant="135" id="jFE-0V-DKf"/>
                                     <constraint firstAttribute="width" constant="341" id="ujN-fK-vSx"/>
                                 </constraints>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
