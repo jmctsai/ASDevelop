@@ -40,12 +40,20 @@ class ModuleFinishViewController: UIViewController {
         LevelField.text = "Level " + String(instructor.students[studentIndex].modules[moduleIndex].level)
         ModuleNameField.text = instructor.students[studentIndex].modules[moduleIndex].name
         XPProgressBar.frame = CGRect(x: 224, y: 156, width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height))
-        XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
+        if (instructor.students[studentIndex].modules[moduleIndex].xp != 0){ //if the xp vale is not 0
+            XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
+        }
         XPCurrentField.text = "\(instructor.students[studentIndex].modules[moduleIndex].xp)/100 xp"
     }
     
     @IBAction func continueButtonTapped(_ sender: UIButton) {
         //Go back to the module start screen
+        
+        /*//level up if xp is larger than 100
+        if (instructor.students[studentIndex].modules[moduleIndex].xp >= 100){
+            instructor.students[studentIndex].modules[moduleIndex].resetXP()
+            instructor.students[studentIndex].modules[moduleIndex].levelUp()
+        }*/
         performSegue(withIdentifier: "unwindSegueToModuleStart", sender: self)
     }
     

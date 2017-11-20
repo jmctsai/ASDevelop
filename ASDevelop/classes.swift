@@ -37,7 +37,9 @@ class Module {
     
     private func levelUp()
     {
-        self.level = self.level + 1
+        if (self.level < 3){
+            self.level = self.level + 1
+        }
     }
     
     func addXP(xp: Int)
@@ -179,4 +181,14 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     UIGraphicsEndImageContext()
     
     return newImage!
+}
+
+//Fisher–Yates shuffle
+extension Array {
+    mutating func shuffle() {
+        for i in stride(from: count - 1, to: 1, by: -1){
+            let j = Int(arc4random_uniform(UInt32(i)))
+            swapAt(i, j)
+        }
+    }
 }
