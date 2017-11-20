@@ -123,17 +123,20 @@ class Student {
 class Instructor {
     var students: [Student]
     var email: String
+    var volume: Float
     
     init(students: [Student], email: String)
     {
         self.students = students
         self.email = email
+        self.volume = 100.0
     }
     
     init()
     {
         self.students = [Student]()
         self.email = ""
+        self.volume = 100.0
     }
     
     func changeEmail(email: String)

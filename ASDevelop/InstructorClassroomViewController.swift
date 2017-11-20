@@ -116,7 +116,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     func presentAccountSettingsViewController() {
         
         //Create the new view
-        let AccountSettingsViewController:AccountSettingsViewController = storyboard!.instantiateViewController(withIdentifier: "NewAccountSettingsViewController") as! AccountSettingsViewController
+        let AccountSettingsViewController:AccountSettingsViewController = storyboard!.instantiateViewController(withIdentifier: "AccountSettingsViewController") as! AccountSettingsViewController
         
         //Change the view to the new view
         self.present(AccountSettingsViewController, animated: true, completion: nil)

@@ -28,7 +28,9 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
     
     //Initialize the new instructor class
     func initializeInstructor() {
+        
         instructor = Instructor()
+        
     }
 
     //SIGN IN BUTTON TAPPED

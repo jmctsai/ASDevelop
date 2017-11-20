@@ -242,12 +242,13 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         
         //if the answers are correct
         if(responses_boolean[0] == answers_boolean[0])&&(responses_boolean[1] == answers_boolean[1])&&(responses_boolean[2] == answers_boolean[2]){
-            
+            correctSound?.volume = instructor.volume
             correctSound?.play()
             xpGained = xpGained + 1
             answersCorrect = answersCorrect + 1
         }
         else{
+            incorrectSound?.volume = instructor.volume
             incorrectSound?.play()
         }
         

@@ -60,8 +60,10 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
         
         if sender.tag == correctAnswer {
             answersCorrect = answersCorrect + 1
+            correctSound?.volume = instructor.volume
             correctSound?.play()
         } else {
+            incorrectSound?.volume = instructor.volume
             incorrectSound?.play()
         }
         

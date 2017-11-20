@@ -120,7 +120,7 @@
         <!--Account Settings View Controller-->
         <scene sceneID="K48-iZ-MQd">
             <objects>
-                <viewController storyboardIdentifier="NewAccountSettingsViewController" id="Cm9-RT-fsY" customClass="AccountSettingsViewController" customModule="ASDevelop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountSettingsViewController" id="Cm9-RT-fsY" customClass="AccountSettingsViewController" customModule="ASDevelop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AEm-D4-IjT">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,8 +129,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT2-qJ-tMm" userLabel="Select A Student">
-                                <rect key="frame" x="30" y="30" width="329" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT2-qJ-tMm" userLabel="Select A Student">
+                                <rect key="frame" x="30" y="30" width="158" height="45"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="40"/>
                                 <color key="textColor" red="0.80677992109999996" green="0.83414870500000005" blue="0.90474540000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -147,20 +147,63 @@
                                     <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="fCI-w4-SW4"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="jrk-CI-L2r">
+                                <rect key="frame" x="169" y="135" width="344" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="P47-kH-LKu"/>
+                                    <constraint firstAttribute="height" constant="30" id="xUb-oR-y2y"/>
+                                </constraints>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovh-NX-TYK" userLabel="Confirm">
+                                <rect key="frame" x="877" y="646" width="72" height="57"/>
+                                <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="1Ew-iO-sXx"/>
+                                    <constraint firstAttribute="width" constant="72" id="TWE-jv-ksq"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="DoneButton">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeSettingsButtonPressed:" destination="Cm9-RT-fsY" eventType="touchUpInside" id="7bn-Jw-3my"/>
+                                    <action selector="newStudentButtonTapped:" destination="8NQ-NJ-nwD" eventType="touchUpInside" id="bNK-rP-ySi"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VolumeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="q8u-b6-HYv">
+                                <rect key="frame" x="70" y="110" width="81" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="Ye9-2a-Seh"/>
+                                    <constraint firstAttribute="width" constant="81" id="kck-KP-R55"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="q8u-b6-HYv" firstAttribute="leading" secondItem="Sg9-de-BHy" secondAttribute="leading" constant="70" id="FKG-Uy-Sph"/>
                             <constraint firstItem="LT2-qJ-tMm" firstAttribute="top" secondItem="AEm-D4-IjT" secondAttribute="top" constant="30" id="J9R-OW-Etj"/>
                             <constraint firstItem="1kf-sk-sqy" firstAttribute="top" secondItem="Sg9-de-BHy" secondAttribute="top" constant="20" id="MIp-ND-Oce"/>
+                            <constraint firstItem="Sg9-de-BHy" firstAttribute="bottom" secondItem="Ovh-NX-TYK" secondAttribute="bottom" constant="65" id="cZ8-xe-DUK"/>
+                            <constraint firstItem="jrk-CI-L2r" firstAttribute="top" secondItem="LT2-qJ-tMm" secondAttribute="bottom" constant="60" id="gf8-e9-ZN8"/>
+                            <constraint firstItem="Sg9-de-BHy" firstAttribute="trailing" secondItem="Ovh-NX-TYK" secondAttribute="trailing" constant="75" id="jJw-BL-q4z"/>
                             <constraint firstItem="LT2-qJ-tMm" firstAttribute="leading" secondItem="Sg9-de-BHy" secondAttribute="leading" constant="30" id="llT-mn-ewh"/>
                             <constraint firstItem="Sg9-de-BHy" firstAttribute="trailing" secondItem="1kf-sk-sqy" secondAttribute="trailing" constant="20" id="mbH-W2-7r6"/>
+                            <constraint firstItem="q8u-b6-HYv" firstAttribute="top" secondItem="LT2-qJ-tMm" secondAttribute="bottom" constant="35" id="tri-Mv-LUm"/>
+                            <constraint firstItem="jrk-CI-L2r" firstAttribute="leading" secondItem="q8u-b6-HYv" secondAttribute="trailing" constant="20" id="w2C-gO-hsa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sg9-de-BHy"/>
                     </view>
+                    <connections>
+                        <outlet property="volumeSlider" destination="jrk-CI-L2r" id="XRc-DS-Xap"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIp-TX-1VG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="-558"/>
+            <point key="canvasLocation" x="753.515625" y="-558.59375"/>
         </scene>
         <!--Instructor Classroom View Controller-->
         <scene sceneID="QaO-BG-sbA">
@@ -223,7 +266,6 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="SettingsIcon"/>
                                 <connections>
-                                    <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="OzW-jg-Z3H"/>
                                     <action selector="settingsButtonPressed:" destination="FN9-ic-26q" eventType="touchUpInside" id="K48-Aq-3OM"/>
                                 </connections>
                             </button>
@@ -1411,5 +1453,6 @@
         <image name="ProgressIcon" width="56" height="56"/>
         <image name="SettingsIcon" width="56" height="56"/>
         <image name="Start" width="337" height="72"/>
+        <image name="VolumeIcon" width="81" height="81"/>
     </resources>
 </document>
