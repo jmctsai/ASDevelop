@@ -26,6 +26,7 @@
 		238312671FB1268000DB4993 /* NewModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383125D1FB1268000DB4993 /* NewModuleViewController.swift */; };
 		238312691FB1268000DB4993 /* EmotionRecognitionGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383125F1FB1268000DB4993 /* EmotionRecognitionGameViewController.swift */; };
 		2383126A1FB1268000DB4993 /* NewStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238312601FB1268000DB4993 /* NewStudentViewController.swift */; };
+		23B5BDFB1FC37526008BB03B /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B5BDFA1FC37526008BB03B /* AccountSettingsViewController.swift */; };
 		23DF53991FBFCCD600479D4E /* StudentProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DF53981FBFCCD600479D4E /* StudentProgressViewController.swift */; };
 		4E4D773EE2081955D9C28A79 /* Pods_ASDevelopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2558C9DF05B80FBEB5EF7065 /* Pods_ASDevelopUITests.framework */; };
 		C614BB3526D767812C71C606 /* Pods_ASDevelop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEA4F1326E2920A510904E7 /* Pods_ASDevelop.framework */; };
@@ -76,6 +77,7 @@
 		2383125D1FB1268000DB4993 /* NewModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewModuleViewController.swift; sourceTree = "<group>"; };
 		2383125F1FB1268000DB4993 /* EmotionRecognitionGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionRecognitionGameViewController.swift; sourceTree = "<group>"; };
 		238312601FB1268000DB4993 /* NewStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStudentViewController.swift; sourceTree = "<group>"; };
+		23B5BDFA1FC37526008BB03B /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		23DF53981FBFCCD600479D4E /* StudentProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProgressViewController.swift; sourceTree = "<group>"; };
 		2558C9DF05B80FBEB5EF7065 /* Pods_ASDevelopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASDevelopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		283151B90F62450811B24B53 /* Pods-ASDevelop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASDevelop.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASDevelop/Pods-ASDevelop.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				19687D0C1FA3AFA8003E4268 /* MainLoginViewController.swift */,
 				238312591FB1267F00DB4993 /* RegisterPageViewController.swift */,
 				237CC5A71FB398E70098E867 /* InstructorClassroomViewController.swift */,
+				23B5BDFA1FC37526008BB03B /* AccountSettingsViewController.swift */,
 				238312601FB1268000DB4993 /* NewStudentViewController.swift */,
 				2383125A1FB1267F00DB4993 /* StudentModulesViewController.swift */,
 				23DF53981FBFCCD600479D4E /* StudentProgressViewController.swift */,
@@ -522,6 +525,7 @@
 				19687D0D1FA3AFA8003E4268 /* MainLoginViewController.swift in Sources */,
 				238312621FB1268000DB4993 /* classes.swift in Sources */,
 				19687D0B1FA3AFA8003E4268 /* AppDelegate.swift in Sources */,
+				23B5BDFB1FC37526008BB03B /* AccountSettingsViewController.swift in Sources */,
 				23DF53991FBFCCD600479D4E /* StudentProgressViewController.swift in Sources */,
 				23462B741FB52DE500571EAA /* ModuleFinishViewController.swift in Sources */,
 				237CC5A81FB398E70098E867 /* InstructorClassroomViewController.swift in Sources */,

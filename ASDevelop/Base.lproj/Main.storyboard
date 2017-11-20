@@ -117,6 +117,51 @@
             </objects>
             <point key="canvasLocation" x="85.546875" y="120.3125"/>
         </scene>
+        <!--Account Settings View Controller-->
+        <scene sceneID="K48-iZ-MQd">
+            <objects>
+                <viewController storyboardIdentifier="NewAccountSettingsViewController" id="Cm9-RT-fsY" customClass="AccountSettingsViewController" customModule="ASDevelop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AEm-D4-IjT">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="r4Y-aa-Xa6">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT2-qJ-tMm" userLabel="Select A Student">
+                                <rect key="frame" x="30" y="30" width="329" height="45"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="40"/>
+                                <color key="textColor" red="0.80677992109999996" green="0.83414870500000005" blue="0.90474540000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kf-sk-sqy" userLabel="Back">
+                                <rect key="frame" x="947" y="40" width="57" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="C20-fH-xhL"/>
+                                    <constraint firstAttribute="height" constant="57" id="X66-LC-N8g"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="BackButton"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="Cm9-RT-fsY" eventType="touchUpInside" id="kbY-Ta-g9h"/>
+                                    <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="fCI-w4-SW4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LT2-qJ-tMm" firstAttribute="top" secondItem="AEm-D4-IjT" secondAttribute="top" constant="30" id="J9R-OW-Etj"/>
+                            <constraint firstItem="1kf-sk-sqy" firstAttribute="top" secondItem="Sg9-de-BHy" secondAttribute="top" constant="20" id="MIp-ND-Oce"/>
+                            <constraint firstItem="LT2-qJ-tMm" firstAttribute="leading" secondItem="Sg9-de-BHy" secondAttribute="leading" constant="30" id="llT-mn-ewh"/>
+                            <constraint firstItem="Sg9-de-BHy" firstAttribute="trailing" secondItem="1kf-sk-sqy" secondAttribute="trailing" constant="20" id="mbH-W2-7r6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Sg9-de-BHy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dIp-TX-1VG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="-558"/>
+        </scene>
         <!--Instructor Classroom View Controller-->
         <scene sceneID="QaO-BG-sbA">
             <objects>
@@ -129,8 +174,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ara-sB-v3c" userLabel="Back">
-                                <rect key="frame" x="947" y="20" width="57" height="57"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ara-sB-v3c" userLabel="Back">
+                                <rect key="frame" x="947" y="40" width="57" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="mtq-Wv-YS4"/>
                                     <constraint firstAttribute="width" constant="57" id="pMg-jI-Ye4"/>
@@ -170,13 +215,27 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLV-fa-5Ah" userLabel="Settings">
+                                <rect key="frame" x="875" y="40" width="57" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="NMm-02-rvz"/>
+                                    <constraint firstAttribute="width" constant="57" id="rIL-34-fbt"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="SettingsIcon"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="FN9-ic-26q" eventType="touchUpInside" id="OzW-jg-Z3H"/>
+                                    <action selector="settingsButtonPressed:" destination="FN9-ic-26q" eventType="touchUpInside" id="K48-Aq-3OM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ntc-66-zTP" firstAttribute="top" secondItem="W1M-hR-kCc" secondAttribute="top" constant="30" id="29Y-lo-VPB"/>
                             <constraint firstItem="W1M-hR-kCc" firstAttribute="trailing" secondItem="ara-sB-v3c" secondAttribute="trailing" constant="20" id="3ad-Ap-9pR"/>
+                            <constraint firstItem="ara-sB-v3c" firstAttribute="leading" secondItem="KLV-fa-5Ah" secondAttribute="trailing" constant="15" id="8HD-P7-LfG"/>
                             <constraint firstItem="RDn-bl-WxU" firstAttribute="centerX" secondItem="p4O-Qm-U0S" secondAttribute="centerX" constant="-30" id="I5v-pj-FqN"/>
                             <constraint firstItem="ntc-66-zTP" firstAttribute="leading" secondItem="W1M-hR-kCc" secondAttribute="leading" constant="30" id="NYk-tc-e5m"/>
+                            <constraint firstItem="KLV-fa-5Ah" firstAttribute="top" secondItem="W1M-hR-kCc" secondAttribute="top" constant="20" id="WYa-Jk-lmW"/>
                             <constraint firstItem="ara-sB-v3c" firstAttribute="top" secondItem="W1M-hR-kCc" secondAttribute="top" constant="20" id="caQ-fw-6dB"/>
                             <constraint firstItem="RDn-bl-WxU" firstAttribute="top" secondItem="ntc-66-zTP" secondAttribute="bottom" constant="20" id="stF-T9-fgl"/>
                         </constraints>
@@ -1350,6 +1409,7 @@
         <image name="LogoBig" width="327" height="327"/>
         <image name="ModuleDoneBackground" width="1024" height="768"/>
         <image name="ProgressIcon" width="56" height="56"/>
+        <image name="SettingsIcon" width="56" height="56"/>
         <image name="Start" width="337" height="72"/>
     </resources>
 </document>

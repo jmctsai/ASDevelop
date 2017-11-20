@@ -78,6 +78,11 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         }
     }
     
+    
+    @IBAction func settingsButtonPressed(_ sender: Any) {
+        presentAccountSettingsViewController()
+    }
+    
     //present login screen after successfully logged in
     func presentNewStudentScreen() {
         
@@ -91,7 +96,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         self.present(NewStudentViewController, animated: true, completion: nil)
     }
     
-    //present login screen after successfully logged in
+    //present student modules view controller
     func presentStudentModulesViewController(studentIndex: Int) {
         
         //Create the new view
@@ -105,5 +110,15 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         
         //Change the view to the new view
         self.present(StudentModulesViewController, animated: true, completion: nil)
+    }
+    
+    //present settings page
+    func presentAccountSettingsViewController() {
+        
+        //Create the new view
+        let AccountSettingsViewController:AccountSettingsViewController = storyboard!.instantiateViewController(withIdentifier: "NewAccountSettingsViewController") as! AccountSettingsViewController
+        
+        //Change the view to the new view
+        self.present(AccountSettingsViewController, animated: true, completion: nil)
     }
 }
