@@ -246,16 +246,16 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
             correctSound?.play()
             xpGained = xpGained + 1
             answersCorrect = answersCorrect + 1
-            
-            if(currentQuestion <= totalQuestions - 1 ){
-                nextQuestion()
-            }
-            else{
-                quizFinished()
-            }
         }
         else{
             incorrectSound?.play()
+        }
+        
+        if(currentQuestion <= totalQuestions - 1 ){
+            nextQuestion()
+        }
+        else{
+            quizFinished()
         }
     }
     

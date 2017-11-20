@@ -154,13 +154,13 @@
 				2383125D1FB1268000DB4993 /* NewModuleViewController.swift */,
 				2383125C1FB1267F00DB4993 /* ModuleStartViewController.swift */,
 				2383125F1FB1268000DB4993 /* EmotionRecognitionGameViewController.swift */,
+				E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */,
 				23462B731FB52DE500571EAA /* ModuleFinishViewController.swift */,
 				19687D111FA3AFA9003E4268 /* Assets.xcassets */,
 				237CC5A91FB3994C0098E867 /* Sounds */,
 				19687D131FA3AFA9003E4268 /* LaunchScreen.storyboard */,
 				19687D161FA3AFA9003E4268 /* Info.plist */,
 				19691E891FACE240007FCCC9 /* GoogleService-Info.plist */,
-				E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */,
 			);
 			path = ASDevelop;
 			sourceTree = "<group>";
