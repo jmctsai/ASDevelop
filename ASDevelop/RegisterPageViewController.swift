@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class RegisterPageViewController: UIViewController {
@@ -15,6 +16,8 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var userPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    var ref: DatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         userEmailTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -28,12 +31,12 @@ class RegisterPageViewController: UIViewController {
     
     //REGISTER BUTTON TAPPED
     @IBAction func registerButtonTapped(_ sender: Any){
-        
-        let userEmail = userEmailTextField.text;
-        let userPassword = userPasswordTextField.text;
-        let userConfirmPassword = confirmPasswordTextField.text;
-        
-        
+
+        //let userName = userNameTextField.text
+        let userEmail = userEmailTextField.text
+        let userPassword = userPasswordTextField.text
+        let userConfirmPassword = confirmPasswordTextField.text
+
         //Check for empty fields
         if(userEmail == "" || userPassword == "" || userConfirmPassword == "")
         {
@@ -52,17 +55,29 @@ class RegisterPageViewController: UIViewController {
             Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion: { (user, error) in
                 if let firebaseError = error {
                     print(firebaseError.localizedDescription)
-                    
                     //ERRORS (to be added)
                     //https://firebase.google.com/docs/auth/ios/errors
-                    
+                    //"Email already in Use"
                     self.displayMyAlertMessage(userMessage: "Registration Failed.. Please Try Again")
                     return
                 }
-                self.displayMyAlertMessage(userMessage: "You are successfully registered")
-                return
+                
+                let ref = Database.database().reference()
+                //let usersReference = ref.child("Instructors").child(uid)
+                let usersReference = ref.child("Instructors").childByAutoId()
+                let values = ["Email": userEmail]
+                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    if err != nil {
+                        print(err)
+                        return
+                    }
+                print("Saved instructors successfully into Firebase DB")
+                })
             })
-        }
+            
+            self.displayMyAlertMessage(userMessage: "You are successfully registered")
+            return
+            }
     }
     
     //display alert msg
