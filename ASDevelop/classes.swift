@@ -218,3 +218,13 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     
     return newImage!
 }
+
+//Fisher–Yates shuffle
+extension Array {
+    mutating func shuffle() {
+        for i in stride(from: count - 1, to: 1, by: -1){
+            let j = Int(arc4random_uniform(UInt32(i)))
+            swapAt(i, j)
+        }
+}
+}
