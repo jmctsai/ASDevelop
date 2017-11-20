@@ -48,12 +48,6 @@ class ModuleFinishViewController: UIViewController {
     
     @IBAction func continueButtonTapped(_ sender: UIButton) {
         //Go back to the module start screen
-        
-        /*//level up if xp is larger than 100
-        if (instructor.students[studentIndex].modules[moduleIndex].xp >= 100){
-            instructor.students[studentIndex].modules[moduleIndex].resetXP()
-            instructor.students[studentIndex].modules[moduleIndex].levelUp()
-        }*/
         performSegue(withIdentifier: "unwindSegueToModuleStart", sender: self)
     }
     
