@@ -218,3 +218,9 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     
     return newImage!
 }
+
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday! - 1
+    }
+}

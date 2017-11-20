@@ -234,7 +234,14 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYJ-oN-ZXY" userLabel="GraphYAxisText3">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="75" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-ZU-8Mg" userLabel="GraphYAxisText3">
+                                <rect key="frame" x="79" y="340" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYJ-oN-ZXY" userLabel="GraphYAxisText2">
                                 <rect key="frame" x="79" y="433" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -255,8 +262,43 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="75" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-ZU-8Mg" userLabel="GraphYAxisText2">
-                                <rect key="frame" x="79" y="340" width="73" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZZ-QH-ymd" userLabel="GraphXAxisText1">
+                                <rect key="frame" x="304" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKs-iP-iQo" userLabel="GraphXAxisText2">
+                                <rect key="frame" x="413" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RGr-um-Mk7" userLabel="GraphXAxisText3">
+                                <rect key="frame" x="520" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8PR-fU-VYA" userLabel="GraphXAxisText4">
+                                <rect key="frame" x="629" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4S-sW-4PT" userLabel="GraphXAxisText5">
+                                <rect key="frame" x="729" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wgR-Ux-MCc" userLabel="GraphXAxisText6">
+                                <rect key="frame" x="829" y="662" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
@@ -269,7 +311,7 @@
                                     <constraint firstAttribute="width" constant="182" id="yRC-09-BZ6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="  Weekly" backgroundImage="DropdownShort">
+                                <state key="normal" title=" By Game" backgroundImage="DropdownShort">
                                     <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -283,7 +325,7 @@
                                     <constraint firstAttribute="height" constant="39" id="Y3X-28-vN8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="  All Modules" backgroundImage="DropdownLong">
+                                <state key="normal" backgroundImage="DropdownLong">
                                     <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -291,10 +333,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qK2-yP-Sxc">
-                                <rect key="frame" x="92" y="162" width="182" height="117"/>
+                                <rect key="frame" x="92" y="162" width="182" height="140"/>
                                 <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="117" id="3ih-Dk-abL"/>
+                                    <constraint firstAttribute="height" constant="140" id="3ih-Dk-abL"/>
                                     <constraint firstAttribute="width" constant="182" id="NRF-Sq-QhX"/>
                                 </constraints>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -314,10 +356,10 @@
                                 <sections/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezT-h9-F1M">
-                                <rect key="frame" x="304" y="162" width="341" height="117"/>
+                                <rect key="frame" x="304" y="162" width="341" height="140"/>
                                 <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="117" id="jFE-0V-DKf"/>
+                                    <constraint firstAttribute="height" constant="140" id="jFE-0V-DKf"/>
                                     <constraint firstAttribute="width" constant="341" id="ujN-fK-vSx"/>
                                 </constraints>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -336,6 +378,13 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A0c-gf-WxI" userLabel="GraphXAxisText0">
+                                <rect key="frame" x="203" y="662" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.49304918469999998" green="0.49874853829999999" blue="0.51584659899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -358,6 +407,13 @@
                     </view>
                     <connections>
                         <outlet property="GraphImageView" destination="rtn-CJ-4Wm" id="M7G-pg-oYW"/>
+                        <outlet property="GraphXText0" destination="A0c-gf-WxI" id="05h-Kn-SH9"/>
+                        <outlet property="GraphXText1" destination="kZZ-QH-ymd" id="iQD-BI-Age"/>
+                        <outlet property="GraphXText2" destination="uKs-iP-iQo" id="RAW-27-Ne5"/>
+                        <outlet property="GraphXText3" destination="RGr-um-Mk7" id="sGk-Cg-UxA"/>
+                        <outlet property="GraphXText4" destination="8PR-fU-VYA" id="4sg-Bf-qOq"/>
+                        <outlet property="GraphXText5" destination="e4S-sW-4PT" id="zAE-H3-BLq"/>
+                        <outlet property="GraphXText6" destination="wgR-Ux-MCc" id="ok7-yo-59j"/>
                         <outlet property="GraphYText0" destination="mmc-mT-p6x" id="Esm-Xv-FaM"/>
                         <outlet property="GraphYText1" destination="Bii-Oo-I1L" id="XL7-ug-VQ9"/>
                         <outlet property="GraphYText2" destination="hYJ-oN-ZXY" id="UWc-VC-6Z3"/>
