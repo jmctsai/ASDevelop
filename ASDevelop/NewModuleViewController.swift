@@ -21,6 +21,8 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the collection view to be changable by current view
         self.NewModulesCollectionView.delegate = self
         self.NewModulesCollectionView.dataSource = self
         createPhotoArray()

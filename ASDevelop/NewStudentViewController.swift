@@ -98,6 +98,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         
+        // Check that a student photo is selected
         if studentPhoto == nil {
             displayMyAlertMessage(userMessage: "Must provide a photo")
             return
@@ -139,6 +140,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
     }
 }
 
+// Draws a curved blue base onto the student image provided
 func createStudentImage(image: UIImage) -> UIImage {
     let bottomImage = UIImage(named: "ImageBase.png")!
     let topMask = UIImage(named: "StudentMask.png")!
@@ -157,6 +159,7 @@ func createStudentImage(image: UIImage) -> UIImage {
     return newImage!
 }
 
+// Draw a blue base onto the student image for the main profile image
 func createNewImage(image: UIImage) -> UIImage {
     let bottomImage = UIImage(named: "AddPhoto.png")!
     let topMask = UIImage(named: "StudentMask.png")!

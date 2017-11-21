@@ -21,6 +21,8 @@ class RegisterPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add rounded border to text fields
         userEmailTextField.borderStyle = UITextBorderStyle.roundedRect
         userPasswordTextField.borderStyle = UITextBorderStyle.roundedRect
         confirmPasswordTextField.borderStyle = UITextBorderStyle.roundedRect

@@ -115,14 +115,17 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // Drop down menus only have 1 section
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // If the current dropdown menu is the rate
         if tableView == RateTableView {
             return rateArray.count
         }
 
+        // Else is the current dropdown menu is the modules
         return modulesArray.count
     }
     
@@ -130,16 +133,21 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
         
         var cell:UITableViewCell?
         
+        // If the dropdown is for rate
         if tableView == RateTableView {
+            // Add the dropdown items to the rate table
             cell = tableView.dequeueReusableCell(withIdentifier: "rateCell", for: indexPath)
             cell!.textLabel!.text = rateArray[indexPath.row]
         }
         
+        // If the dropdown is for modules
         if tableView == ModulesTableView {
+            // Add the dropdown items to the modules table
             cell = tableView.dequeueReusableCell(withIdentifier: "modulesCell", for: indexPath)
             cell!.textLabel!.text = modulesArray[indexPath.row]
         }
         
+        // Set the text color and background
         cell!.textLabel!.textColor = UIColor.white
         cell!.backgroundColor = UIColor(hex: "1747BB")
         return cell!
@@ -148,34 +156,47 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
+        // If selected item is in the rate dropdown
         if tableView == RateTableView {
+            
+            // Set the dropdown button text to selected text
             RateDropdown.setTitle(" " + (cell?.textLabel?.text)!, for: .normal)
             RateTableView.isHidden = true
             rateSelection = indexPath.row
+            
+            // Redraw the selected progress graph
             drawProgressGraph()
         }
         
+        // If the selected item is in the rate modules dropdown
         if tableView == ModulesTableView {
+            
+            // Set the dropdown button text to selected text
             ModulesDropdown.setTitle(" " + (cell?.textLabel?.text)!, for: .normal)
             ModulesTableView.isHidden = true
             modulesSelection = indexPath.row
+            
+            // Redraw the selected progress graph
             drawProgressGraph()
         }
     }
     
+    // Hide or unhide the dropdown menu if dropdown button is pressed
     @IBAction func rateButtonPressed(_ sender: Any) {
         RateTableView.isHidden = !RateTableView.isHidden
     }
     
+    // Hide or unhide the dropdown menu if dropdown button is pressed
     @IBAction func modulesButtonPressed(_ sender: Any) {
         ModulesTableView.isHidden = !ModulesTableView.isHidden
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        //Send Student Data Back
+        //Go back to the student modules page
         dismiss(animated: true, completion: nil)
     }
     
+    // Change the graph axis label based on the yValues provided and x axis array index
     func updateGraphAxis(yValues: [Int], xArray : Int) {
         GraphYText0.text = String(yValues[0])
         GraphYText1.text = String(yValues[1])
@@ -193,6 +214,7 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
  
     }
     
+    // The logic to draw the progress graph based on the drop down menus selected
     func drawProgressGraph() {
         var yMax = 0
 
@@ -213,20 +235,26 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
             }
         }
         
+        // If By Game is selected
         if rateSelection == 0 {
             
+            // Total games played for the current selected module on the drop down
             let xpCount = instructor.students[studentIndex!].modules[modulesSelection].timedXP.count
             
+            // If there are less than or equal to 7 games played
             if xpCount - 7 <= 0 {
                 var i = 0
+                // Add the xp gained at each game to the yAxisXP array
                 for xp in instructor.students[studentIndex!].modules[modulesSelection].timedXP.list {
                     yAxisXpArray[i] = xp
                     i = i + 1
                 }
             }
+            // More than 7 games played for currently selected module
             else
             {
                 var j = 0
+                // Get the last 7 games played for the currently selected module
                 for i in xpCount - 7 ... xpCount - 1 {
                     yAxisXpArray[j] = instructor.students[studentIndex!].modules[modulesSelection].timedXP.list[i]
                     j = j + 1
@@ -234,20 +262,25 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
                 }
             }
 
+            // Set the maximum y axis xp value to 12
             yMax = 12
             
+            // Size of the image graph area
             let yMaxPixel = 430.0
             let yMinPixel = 64.0
             
+            // Get the image y coordinated for each value of xp
             for i in 0...6 {
                 if yAxisXpArray[i] != -1 {
                     yAxisPosArray[i] = Int(((yMinPixel - yMaxPixel) / Double(yMax)) * Double(yAxisXpArray[i]) + yMaxPixel)
                 }
             }
             
+            // Change the graph axis labels
             updateGraphAxis(yValues: yAxisInt, xArray: rateSelection)
             
         }
+        // TO BE COMPLETED IN VERSION 3
         else if rateSelection == 1
         {
             let maxXp = 0
@@ -275,10 +308,12 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
             }
         }
         
+        // Draw the data points calculated onto the graph with connecting lines
         GraphImageView.image = drawGraph(graphImage: UIImage(named:"GraphTemplate.png")!, xPosArray: xAxisPosArray, yPosArray: yAxisPosArray)
     }
 }
 
+// Draw the data points and connecting lines onto the graph image using the x,y coordinates
 func drawGraph(graphImage: UIImage, xPosArray: [Int], yPosArray: [Int]) -> UIImage {
     
     if yPosArray[0] == -1 {

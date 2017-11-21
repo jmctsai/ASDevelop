@@ -17,8 +17,11 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Change the text fields to have rounded borders
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
+        
         self.passwordTextField.delegate = self
     }
 
@@ -28,9 +31,7 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
     
     //Initialize the new instructor class
     func initializeInstructor() {
-        
         instructor = Instructor()
-        
     }
 
     //SIGN IN BUTTON TAPPED
