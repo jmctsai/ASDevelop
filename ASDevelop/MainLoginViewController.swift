@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class MainLoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -29,11 +30,6 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    //Initialize the new instructor class
-    func initializeInstructor() {
-        instructor = Instructor()
-    }
-
     //SIGN IN BUTTON TAPPED
     func textFieldShouldReturn(_ passwordTextField: UITextField) -> Bool {
         //check if field populated

@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
     var MainLoginViewController:MainLoginViewController?
     var photoArray = [textToImage(drawText: "+ Add Student", inImage: UIImage(named:"AddButton.png")!, atPoint: CGPoint(x: 15,y: 235))]
@@ -23,6 +24,8 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         // Allow the view controller to automatically update collection view data
         self.StudentCollectionView.delegate = self
         self.StudentCollectionView.dataSource = self
+
+        initializeInstructor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
