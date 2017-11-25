@@ -88,6 +88,11 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         super.didReceiveMemoryWarning()
     }
     
+    func initializeInstructor(){
+        
+    }
+    
+    
     // Back,Logout button tapped
     @IBAction func logoutTapped(_ sender: Any) {
         

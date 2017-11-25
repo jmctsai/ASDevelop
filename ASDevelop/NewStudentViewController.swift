@@ -126,6 +126,29 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         })
         //////////////////////////////////////////////////////////////////////
         
+        //====STORING OF USER IMAGE=======
+        
+        //guard let uid = Auth.auth().currentUser?.uid else {
+        //    return
+        //}
+        
+        let storageRef = Storage.storage().reference().child("myImage.png")
+        
+        if let uploadData = UIImagePNGRepresentation(studentPhoto!) {
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+            })
+        }
+        
+        //let ref = Database.database().reference()
+        //let userRef=ref.child("Instructors").child(uid)
+        ///////////////////////////////////////////////////////////////////////
+        
+        
         //Go back to student module
         dismiss(animated: true, completion: nil)
     }
