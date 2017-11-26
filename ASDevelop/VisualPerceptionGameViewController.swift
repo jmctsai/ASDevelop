@@ -91,6 +91,8 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buttonSubmit.layer.cornerRadius = 5
+        
         do {
             correctSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "positive", ofType: "wav")!))
             correctSound?.prepareToPlay()
@@ -143,7 +145,7 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         image_33.image = PhotoArray_3x3[8]
         
         //for now the string can be changed in the app which isnt good
-        ModuleProgressField.text = String(currentQuestion + 1) + "/" + String(totalQuestions)
+        ModuleProgressField.text = String(currentQuestion + 1)
         
         //increment question counter
         currentQuestion = currentQuestion + 1

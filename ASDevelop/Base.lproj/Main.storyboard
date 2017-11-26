@@ -704,6 +704,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ModuleDoneBackground" translatesAutoresizingMaskIntoConstraints="NO" id="JoE-0T-4AQ">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzY-a5-jFv">
                                 <rect key="frame" x="348.5" y="540" width="327" height="70"/>
                                 <constraints>
@@ -804,7 +808,7 @@
                     <view key="view" contentMode="scaleToFill" id="mAg-bf-5Mg">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.11009805649518967" green="0.56524413824081421" blue="0.90576452016830444" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.80677992105484009" green="0.83414870500564575" blue="0.90474539995193481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="10Z-z6-mOE"/>
                     </view>
                 </viewController>
@@ -881,20 +885,32 @@
                                     <constraint firstAttribute="height" constant="462" id="5Ue-BE-F7d"/>
                                 </constraints>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1/10" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6b9-Xd-l1t">
-                                <rect key="frame" x="5" y="716" width="85" height="47"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ModuleProgress" translatesAutoresizingMaskIntoConstraints="NO" id="zpf-GG-z99">
+                                <rect key="frame" x="3" y="693" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="3Om-ta-Y7m"/>
+                                    <constraint firstAttribute="width" constant="72" id="Ifg-qw-45u"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6b9-Xd-l1t">
+                                <rect key="frame" x="8" y="694" width="50" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6Uj-za-Sbv"/>
+                                </constraints>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.80677992105484009" green="0.83414870500564575" blue="0.90474539995193481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6b9-Xd-l1t" firstAttribute="leading" secondItem="AKx-vc-Jb7" secondAttribute="leading" constant="5" id="2SA-U2-hJb"/>
-                            <constraint firstItem="AKx-vc-Jb7" firstAttribute="bottom" secondItem="6b9-Xd-l1t" secondAttribute="bottom" constant="5" id="4bh-b1-z8F"/>
+                            <constraint firstItem="AKx-vc-Jb7" firstAttribute="bottom" secondItem="zpf-GG-z99" secondAttribute="bottom" constant="3" id="1W3-UT-dRV"/>
                             <constraint firstItem="nxG-Xg-2MI" firstAttribute="leading" secondItem="AKx-vc-Jb7" secondAttribute="leading" constant="50" id="F4F-aT-By3"/>
+                            <constraint firstItem="zpf-GG-z99" firstAttribute="leading" secondItem="AKx-vc-Jb7" secondAttribute="leading" constant="3" id="QPF-wi-XcV"/>
+                            <constraint firstItem="AKx-vc-Jb7" firstAttribute="bottom" secondItem="6b9-Xd-l1t" secondAttribute="bottom" constant="40" id="Zs7-p1-tmQ"/>
                             <constraint firstItem="nxG-Xg-2MI" firstAttribute="centerY" secondItem="vjq-kv-nvt" secondAttribute="centerY" id="apH-9P-dAB"/>
                             <constraint firstItem="WYT-ko-bgY" firstAttribute="centerY" secondItem="vjq-kv-nvt" secondAttribute="centerY" id="jDI-i4-cmu"/>
+                            <constraint firstItem="6b9-Xd-l1t" firstAttribute="leading" secondItem="AKx-vc-Jb7" secondAttribute="leading" constant="8" id="qYO-nn-QGw"/>
                             <constraint firstItem="AKx-vc-Jb7" firstAttribute="trailing" secondItem="WYT-ko-bgY" secondAttribute="trailing" constant="110" id="snU-R6-29K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AKx-vc-Jb7"/>
@@ -919,13 +935,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1/10" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E9H-CQ-Ale">
-                                <rect key="frame" x="0.0" y="721" width="85" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ModuleProgress" translatesAutoresizingMaskIntoConstraints="NO" id="eKe-yG-S8j">
+                                <rect key="frame" x="3" y="693" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="SaM-gE-e5y"/>
+                                    <constraint firstAttribute="width" constant="72" id="iEg-3j-dbc"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3N-lF-jWN">
                                 <rect key="frame" x="57" y="504" width="170" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -968,7 +984,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mba-zQ-EaF">
                                 <rect key="frame" x="573" y="686" width="171" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.091699816286563873" green="0.27841603755950928" blue="0.73319262266159058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Submit Answer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1050,9 +1066,19 @@
                                     <constraint firstAttribute="width" secondItem="Sp7-23-Tzk" secondAttribute="height" multiplier="170:151" id="sZz-es-JYM"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E9H-CQ-Ale">
+                                <rect key="frame" x="8" y="694" width="50" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="IF5-9P-vKl"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.80677992109999996" green="0.83414870500000005" blue="0.90474540000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="uWr-7y-HCg" firstAttribute="bottom" secondItem="E9H-CQ-Ale" secondAttribute="bottom" constant="40" id="2nq-IC-2Sy"/>
                             <constraint firstItem="Sp7-23-Tzk" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="383" id="978-Sm-bNc"/>
                             <constraint firstItem="jVL-hH-HdA" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" constant="-214.5" id="E8q-Xt-HBT"/>
                             <constraint firstItem="cHC-Y4-19C" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" constant="-214.5" id="JkJ-t9-1M9"/>
@@ -1060,6 +1086,8 @@
                             <constraint firstItem="izE-J1-kce" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="-84" id="OHx-ML-2HP"/>
                             <constraint firstItem="n7e-Ev-6d8" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" id="OTr-43-K3y"/>
                             <constraint firstItem="Jaz-hl-v3W" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" id="QKt-nc-b6t"/>
+                            <constraint firstItem="uWr-7y-HCg" firstAttribute="bottom" secondItem="eKe-yG-S8j" secondAttribute="bottom" constant="3" id="QcQ-HA-BHd"/>
+                            <constraint firstItem="E9H-CQ-Ale" firstAttribute="leading" secondItem="uWr-7y-HCg" secondAttribute="leading" constant="8" id="Rlm-r0-f7O"/>
                             <constraint firstItem="Jaz-hl-v3W" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="-84" id="UUM-ln-Exh"/>
                             <constraint firstItem="izE-J1-kce" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" constant="195" id="XPA-q4-sae"/>
                             <constraint firstItem="5Mf-8B-64c" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" id="XeD-qO-pJ1"/>
@@ -1068,6 +1096,7 @@
                             <constraint firstItem="n7e-Ev-6d8" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="146" id="dEH-w4-igJ"/>
                             <constraint firstItem="pkc-4j-CGz" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" constant="-214.5" id="dZ7-Yb-xty"/>
                             <constraint firstItem="pkc-4j-CGz" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="-84" id="eXR-ia-c1X"/>
+                            <constraint firstItem="eKe-yG-S8j" firstAttribute="leading" secondItem="uWr-7y-HCg" secondAttribute="leading" constant="3" id="jLT-to-fq4"/>
                             <constraint firstItem="jVL-hH-HdA" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="146" id="kTH-9n-zKC"/>
                             <constraint firstItem="cHC-Y4-19C" firstAttribute="centerX" secondItem="IO1-XH-bfJ" secondAttribute="centerX" constant="383" id="t4h-pb-zDl"/>
                             <constraint firstItem="VYg-1G-pTZ" firstAttribute="centerY" secondItem="IO1-XH-bfJ" secondAttribute="centerY" constant="195" id="uwp-0U-028"/>
@@ -1423,6 +1452,8 @@
         <image name="EmotionStart" width="434" height="320"/>
         <image name="GraphTemplate" width="877" height="526"/>
         <image name="LogoBig" width="327" height="327"/>
+        <image name="ModuleDoneBackground" width="1024" height="768"/>
+        <image name="ModuleProgress" width="72" height="70"/>
         <image name="ProgressIcon" width="56" height="56"/>
         <image name="SettingsIcon" width="56" height="56"/>
         <image name="Start" width="337" height="72"/>

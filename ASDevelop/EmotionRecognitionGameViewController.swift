@@ -56,6 +56,32 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     var correctSound:AVAudioPlayer?
     var incorrectSound:AVAudioPlayer?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Button1.layer.cornerRadius = 10
+        Button2.layer.cornerRadius = 10
+        Button3.layer.cornerRadius = 10
+        
+        initQA()
+        //prepare sounds
+        do {
+            correctSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "positive", ofType: "wav")!))
+            correctSound?.prepareToPlay()
+            
+            incorrectSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "negative", ofType: "wav")!))
+            incorrectSound?.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        nextQuestion()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         if sender.tag == correctAnswer {
@@ -102,7 +128,7 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
             answer3 = thirdLevel[currentQuestion].answerArr[(firstIndex + 2) % 3]
         }
         
-        ModuleProgressField.text = String(currentQuestion + 1) + "/" + String(totalQuestions)
+        ModuleProgressField.text = String(currentQuestion + 1)
         
         
         // Find the correct answer index
@@ -164,28 +190,6 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
         secondLevel.shuffle()
         thirdLevel.shuffle()
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initQA()
-        //prepare sounds
-        do {
-            correctSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "positive", ofType: "wav")!))
-            correctSound?.prepareToPlay()
-            
-            incorrectSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "negative", ofType: "wav")!))
-            incorrectSound?.prepareToPlay()
-        } catch {
-            print(error)
-        }
-        
-        nextQuestion()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func quizFinished()
