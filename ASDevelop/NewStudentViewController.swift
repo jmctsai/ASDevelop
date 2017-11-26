@@ -111,7 +111,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         //Pass student class to logged in module
         instructor.students.append(student)
         
-        //REFERENCEING USER ID FOR NESTING IN DATABASE////////////////////////
+        //Reference current user ID to store into Firebase database
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
         let usersReference = ref.child("Instructors").child(userID).child("Student").childByAutoId()
@@ -128,15 +128,16 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         
         //////////////////////////////////////////////////////////////////////
         //====STORING OF USER IMAGE=======
-        //guard let uid = Auth.auth().currentUser?.uid else {
-        //    return
-        //}
+        // UID of currently added student
+        var currentStudentUID = usersReference.key
+        print(currentStudentUID)
         
         // Get a reference to the loaction where we'll store our photos
         let photosRef = Storage.storage().reference().child("student_photos")
 
         // Get a reference to store the file at student_photos/<FILENAME>
-        let photoRef = photosRef.child("\(NSUUID().uuidString).png")
+        //let photoRef = photosRef.child("\(NSUUID().uuidString).png")
+        let photoRef = photosRef.child("\(currentStudentUID).png")
         
         // Upload student photo to Firebase Storage
         if let uploadData = UIImagePNGRepresentation(studentPhoto!) {
@@ -152,8 +153,6 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
         
-        //let ref = Database.database().reference()
-        //let userRef=ref.child("Instructors").child(uid)
         ///////////////////////////////////////////////////////////////////////
         
         
