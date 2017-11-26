@@ -143,11 +143,12 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             let metadata = StorageMetadata()
             metadata.contentType = "image/png"
             photoRef.putData(uploadData, metadata: metadata).observe(.success) { (snapshot) in
-                // ===== When the image has successfully uploaded, we get it's download URL
-                //let text = snapshot.metadata?.downloadURL()?.absoluteString
+                //When the image has successfully uploaded, we get it's download URL
+                let downloadURL = snapshot.metadata?.downloadURL()?.absoluteString
                 // ===== Set the download URL to the message box, so that the user can send it to the database
                 //self.messageTextField.text = text
                 print(metadata)
+                //print(downloadURL)  //https://firebasestorage.googleapis.com/v0/b/asdevelop-group03.appspot.com/o/student_photos%2FD4DEA135-12A2-4EAD-9324-5E0A15C75759.png?alt=media&token=93a3a804-19cf-4626-9520-f072cf353c6a
             }
         }
         
