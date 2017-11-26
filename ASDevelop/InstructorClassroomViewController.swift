@@ -88,8 +88,58 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         super.didReceiveMemoryWarning()
     }
     
-    func initializeInstructor(){
+    //Initialize the new instructor class
+    func initializeInstructor() {
+        instructor = Instructor()
         
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogout),with: nil, afterDelay: 0)
+        }else{
+            let ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists(){
+                    //print (userID)
+                    print (snapshot)
+                    //print (snapshot.value) // same thing as snapshot basically
+                    //print (snapshot.key)   //Prints the key YZjZUsxKovTTjK9NmL4pSA79F0u1
+                    
+                    let value = snapshot.value as? NSDictionary
+                    
+                    let instructorEmail = value?["Email"] as? String ?? ""
+                    
+                    //                    let key = "1"
+                    //                        for child in snapshot.children {
+                    //                            if let snap = snapshot.childSnapshot(forPath: key){
+                    //                                print("Able retrieve value : \(snap) for key : \(key)")
+                    //                            } else {
+                    //                                print("Unable to retrieve value for key : \(key)")
+                    //                            }
+                    //                        }
+                    //
+                    
+                    //Save instructor email from snapshot to the instructor class
+                    print ("Instructor email is \(instructorEmail)")      //instructor1@gmail.com
+                    instructor.changeEmail(email: instructorEmail)
+                    
+                    
+                    //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+                    
+                }else{
+                    print("snapshot does not exist")
+                }
+                
+            }, withCancel: nil)
+        }
+    }
+    
+    @objc func handleLogout(){
+        do{
+            try Auth.auth().signOut()
+        }catch let logoutError {
+            print(logoutError)
+        }
     }
     
     
