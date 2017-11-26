@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -124,24 +125,30 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             }
             print("Saved student data successfully into Firebase DB")
         })
+        
         //////////////////////////////////////////////////////////////////////
-        
         //====STORING OF USER IMAGE=======
-        
         //guard let uid = Auth.auth().currentUser?.uid else {
         //    return
         //}
         
-        let storageRef = Storage.storage().reference().child("myImage.png")
+        // Get a reference to the loaction where we'll store our photos
+        let photosRef = Storage.storage().reference().child("student_photos")
+
+        // Get a reference to store the file at student_photos/<FILENAME>
+        let photoRef = photosRef.child("\(NSUUID().uuidString).png")
         
+        // Upload student photo to Firebase Storage
         if let uploadData = UIImagePNGRepresentation(studentPhoto!) {
-            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            photoRef.putData(uploadData, metadata: metadata).observe(.success) { (snapshot) in
+                // ===== When the image has successfully uploaded, we get it's download URL
+                //let text = snapshot.metadata?.downloadURL()?.absoluteString
+                // ===== Set the download URL to the message box, so that the user can send it to the database
+                //self.messageTextField.text = text
                 print(metadata)
-            })
+            }
         }
         
         //let ref = Database.database().reference()

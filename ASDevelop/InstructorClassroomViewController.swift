@@ -101,13 +101,16 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                 
                 if snapshot.exists(){
                     //print (userID)
-                    print (snapshot)
+                    //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
                     //print (snapshot.value) // same thing as snapshot basically
                     //print (snapshot.key)   //Prints the key YZjZUsxKovTTjK9NmL4pSA79F0u1
                     
-                    let value = snapshot.value as? NSDictionary
+                    let data = snapshot.value as! NSDictionary
                     
-                    let instructorEmail = value?["Email"] as? String ?? ""
+                    guard let instructorEmail = data["Email"] as! String! else {return}
+                    //let instructorEmail = data?["Email"] as? String ?? ""
+                    
+                    
                     
                     //                    let key = "1"
                     //                        for child in snapshot.children {
