@@ -49,23 +49,35 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
         
 //////////////////////////////////////////////////////////////////////////////
         // =========== STORING OF USER MODULES ==========
-        //"Emotion Identification" = 0
-        //"Visual Perception" = 1
-        //"Motion Control" = 2
+
+
         
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
-        let usersReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].id)").child("Modules").childByAutoId()
-
+        // ID of current STUDENT
+        
+        // Setting up game ID for finished view module
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(instructor.students[studentIndex].gameID)")
+        
+        // ID of current GAME
+        let currentGameID = gameReference.key
+        print("current Game ID is : \(currentGameID)")
+        
         let moduleNode = ["Game": selectedModule]
-        usersReference.updateChildValues(moduleNode, withCompletionBlock: { (err, ref) in
+        //usersReference.setValue(moduleNode)
+        gameReference.updateChildValues(moduleNode, withCompletionBlock: { (err, ref) in
             if err != nil {
                 print(err)
                 return
             }
-            print(self.selectedModule)
-            print("Saved selected game module successfully into Firebase DB")
+            //"Emotion Identification" = 0
+            //"Visual Perception" = 1
+            //"Motion Control" = 2
+            print("Selected Game type : \(self.selectedModule)")
+            print("Saved selected game type of 0,1,2 successfully into Firebase DB")
         })
+
+        
 ///////////////////////////////////////////////////////////////////////////////
         
         //Add the module to the student

@@ -117,24 +117,55 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
                 print(err)
                 return
             }
-            print("Saved student data successfully into Firebase DB")
+            print("Saved student data, F.Name, L.Name, Age successfully into Firebase DB")
         })
+        
+        // ID of current STUDENT
+        let currentStudentID = usersReference.key
+        print("current Student ID is : \(currentStudentID)")
+
+        // Setting up game ID for finished view module
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child(currentStudentID).child("Modules").childByAutoId()
+        // ID of current GAME
+        let currentGameID = gameReference.key
+        print("current Game ID is : \(currentGameID)")
+        
+//        //QUERY STUDENT DATA, SAVE STUDENT AGE, FIRST NAME
+//        usersReference.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//            if snapshot.exists(){
+//
+//                //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
+//                let data = snapshot.value as! NSDictionary
+//
+//                guard let studentAge = data["Age"] as! String! else {return}
+//                guard let studentFirstName = data["First_Name"] as! String! else {return}
+//
+//                print("Student age is: \(studentAge)")
+//                print("Student First Name is: \(studentFirstName)")
+//
+//            }else{
+//                print("snapshot does not exist")
+//            }
+//
+//        }, withCancel: nil)
+
+        
+        //======don't touch================================================================
+        //Create new student class
+        //let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID)
+        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID, gameID : currentGameID )
+        //===================================================================================
         
         //////////////////////////////////////////////////////////////////////
         //==== STORING OF USER IMAGE =======
-        // UID of currently added student
-        var currentStudentUID = usersReference.key
-        //print(currentStudentUID)
-        
-        //Create new student class
-        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, id: currentStudentUID)
         
         // Get a reference to the loaction where we'll store our photos
         let photosRef = Storage.storage().reference().child("student_photos")
 
         // Get a reference to store the file at student_photos/<FILENAME>
         //let photoRef = photosRef.child("\(NSUUID().uuidString).png")
-        let photoRef = photosRef.child("\(currentStudentUID).png")
+        let photoRef = photosRef.child("\(currentStudentID).png")
         
         // Upload student photo to Firebase Storage
         if let uploadData = UIImagePNGRepresentation(studentPhoto!) {
@@ -145,11 +176,11 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
                 let downloadURL = snapshot.metadata?.downloadURL()?.absoluteString
                 // ===== Set the download URL to the message box, so that the user can send it to the database
                 //self.messageTextField.text = text
-                print(metadata)
+                //print(metadata)
                 //print(downloadURL)  //https://firebasestorage.googleapis.com/v0/b/asdevelop-group03.appspot.com/o/student_photos%2FD4DEA135-12A2-4EAD-9324-5E0A15C75759.png?alt=media&token=93a3a804-19cf-4626-9520-f072cf353c6a
             }
         }
-        
+        // take snapshot of currentStudentID => than store Age, First_Name to global variable
         ///////////////////////////////////////////////////////////////////////
         
         //Pass student class to logged in module
