@@ -91,6 +91,7 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ModuleProgressField.isUserInteractionEnabled = false
         buttonSubmit.layer.cornerRadius = 5
         
         do {

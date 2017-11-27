@@ -29,6 +29,8 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ProgressField.isUserInteractionEnabled = false
+        
         let frameDoor = CGRect(x: 100, y: 100, width: 75, height: 84)
         PointerObject = ObjectView(frame: frameDoor)
         PointerObject.image = UIImage(named: "MotorPointer")

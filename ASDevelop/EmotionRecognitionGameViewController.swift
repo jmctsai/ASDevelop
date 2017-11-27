@@ -59,6 +59,8 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ModuleProgressField.isUserInteractionEnabled = false
+        
         Button1.layer.cornerRadius = 10
         Button2.layer.cornerRadius = 10
         Button3.layer.cornerRadius = 10

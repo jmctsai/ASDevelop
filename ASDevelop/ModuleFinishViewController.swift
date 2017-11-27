@@ -31,6 +31,10 @@ class ModuleFinishViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         reloadValues()
+        LevelField.isUserInteractionEnabled = false
+        ModuleNameField.isUserInteractionEnabled = false
+        XPGainedField.isUserInteractionEnabled = false
+        XPCurrentField.isUserInteractionEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
