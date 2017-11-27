@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 import FirebaseAuth
 
 class ModuleFinishViewController: UIViewController {
@@ -48,6 +50,29 @@ class ModuleFinishViewController: UIViewController {
         XPProgressBar.frame = CGRect(x: 224, y: 156, width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height))
         XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
         XPCurrentField.text = "\(instructor.students[studentIndex].modules[moduleIndex].xp)/100 xp"
+        
+        
+        
+        //s==============STORE GAME DATA name, level, exp==================
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser!.uid
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(instructor.students[studentIndex].gameID)")
+
+        print("xp is stored under this ID: \(gameReference.key)")
+        
+        // need to move this under the specfic game node
+        let gameNode = ["Xp": instructor.students[studentIndex].modules[moduleIndex].xp,
+                        "Level": instructor.students[studentIndex].modules[moduleIndex].level]
+        gameReference.updateChildValues(gameNode, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err)
+                return
+            }
+                print("Saved game information successfully into Firebase DB")
+            })
+        
+        ///////////////////////////////////////////////////////////////////////////////
+        
     }
     
     @IBAction func continueButtonTapped(_ sender: UIButton) {

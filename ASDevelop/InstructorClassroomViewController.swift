@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
     var MainLoginViewController:MainLoginViewController?
     var photoArray = [textToImage(drawText: "+ Add Student", inImage: UIImage(named:"AddButton.png")!, atPoint: CGPoint(x: 15,y: 235))]
@@ -23,6 +24,8 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         // Allow the view controller to automatically update collection view data
         self.StudentCollectionView.delegate = self
         self.StudentCollectionView.dataSource = self
+
+        initializeInstructor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +87,55 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //Initialize the new instructor class
+    func initializeInstructor() {
+        instructor = Instructor()
+        
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogout),with: nil, afterDelay: 0)
+        }else{
+            let ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists(){
+                    
+                    //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
+                    let data = snapshot.value as! NSDictionary
+                    
+                    guard let instructorEmail = data["Email"] as! String! else {return}
+       
+                    //Save instructor email from snapshot to the instructor class
+                    instructor.changeEmail(email: instructorEmail)
+                    print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
+                    
+                    //Module
+                    
+                    //firstName
+                    
+                    //age
+                    
+                    //photo
+                    
+                    //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+                    
+                }else{
+                    print("snapshot does not exist")
+                }
+                
+            }, withCancel: nil)
+        }
+    }
+    
+    @objc func handleLogout(){
+        do{
+            try Auth.auth().signOut()
+        }catch let logoutError {
+            print(logoutError)
+        }
+    }
+    
     
     // Back,Logout button tapped
     @IBAction func logoutTapped(_ sender: Any) {

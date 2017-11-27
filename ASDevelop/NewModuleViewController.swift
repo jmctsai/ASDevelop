@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -43,6 +46,40 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Choose the module added
         selectedModule = moduleIndexArray[indexPath.row]
+        
+//////////////////////////////////////////////////////////////////////////////
+        // =========== STORING OF USER MODULES ==========
+
+
+        
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser!.uid
+        // ID of current STUDENT
+        
+        // Setting up game ID for finished view module
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(instructor.students[studentIndex].gameID)")
+        
+        // ID of current GAME
+        let currentGameID = gameReference.key
+        print("current Game ID is : \(currentGameID)")
+        
+        let moduleNode = ["Game": selectedModule]
+        //usersReference.setValue(moduleNode)
+        gameReference.updateChildValues(moduleNode, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err)
+                return
+            }
+            //"Emotion Identification" = 0
+            //"Visual Perception" = 1
+            //"Motion Control" = 2
+            print("Selected Game type : \(self.selectedModule)")
+            print("Saved selected game type of 0,1,2 successfully into Firebase DB")
+        })
+
+        
+///////////////////////////////////////////////////////////////////////////////
+        
         //Add the module to the student
         instructor.students[studentIndex].addModule(module: Module(num: selectedModule))
         // Update view
