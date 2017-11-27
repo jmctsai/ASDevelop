@@ -100,32 +100,23 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
             ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if snapshot.exists(){
-                    //print (userID)
-                    //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
-                    //print (snapshot.value) // same thing as snapshot basically
-                    //print (snapshot.key)   //Prints the key YZjZUsxKovTTjK9NmL4pSA79F0u1
                     
+                    //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
                     let data = snapshot.value as! NSDictionary
                     
                     guard let instructorEmail = data["Email"] as! String! else {return}
-                    //let instructorEmail = data?["Email"] as? String ?? ""
-                    
-                    
-                    
-                    //                    let key = "1"
-                    //                        for child in snapshot.children {
-                    //                            if let snap = snapshot.childSnapshot(forPath: key){
-                    //                                print("Able retrieve value : \(snap) for key : \(key)")
-                    //                            } else {
-                    //                                print("Unable to retrieve value for key : \(key)")
-                    //                            }
-                    //                        }
-                    //
-                    
+       
                     //Save instructor email from snapshot to the instructor class
-                    print ("Instructor email is \(instructorEmail)")      //instructor1@gmail.com
                     instructor.changeEmail(email: instructorEmail)
+                    print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
                     
+                    //Module
+                    
+                    //firstName
+                    
+                    //age
+                    
+                    //photo
                     
                     //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
                     

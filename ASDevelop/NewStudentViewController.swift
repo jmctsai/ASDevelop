@@ -105,12 +105,6 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         
-        //Create new student class
-        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto)
-        
-        //Pass student class to logged in module
-        instructor.students.append(student)
-        
         //Reference current user ID to store into Firebase database
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
@@ -127,10 +121,13 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         })
         
         //////////////////////////////////////////////////////////////////////
-        //====STORING OF USER IMAGE=======
+        //==== STORING OF USER IMAGE =======
         // UID of currently added student
         var currentStudentUID = usersReference.key
-        print(currentStudentUID)
+        //print(currentStudentUID)
+        
+        //Create new student class
+        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, id: currentStudentUID)
         
         // Get a reference to the loaction where we'll store our photos
         let photosRef = Storage.storage().reference().child("student_photos")
@@ -155,6 +152,8 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         
         ///////////////////////////////////////////////////////////////////////
         
+        //Pass student class to logged in module
+        instructor.students.append(student)
         
         //Go back to student module
         dismiss(animated: true, completion: nil)

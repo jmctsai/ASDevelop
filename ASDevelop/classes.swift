@@ -100,13 +100,15 @@ class Student {
     var firstName: String
     var age: Int
     var photo: UIImage?
+    var id: String
     
-    init(modules: [Module], firstName: String, age: Int, photo: UIImage?)
+    init(modules: [Module], firstName: String, age: Int, photo: UIImage?, id: String)
     {
         self.modules = modules
         self.firstName = firstName
         self.age = age
         self.photo = photo
+        self.id = id
     }
     
     func changePhoto(photo: UIImage?)

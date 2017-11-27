@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 import AVFoundation
 
 class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate {

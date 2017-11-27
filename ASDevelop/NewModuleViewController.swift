@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -43,6 +46,28 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Choose the module added
         selectedModule = moduleIndexArray[indexPath.row]
+        
+//////////////////////////////////////////////////////////////////////////////
+        // =========== STORING OF USER MODULES ==========
+        //"Emotion Identification" = 0
+        //"Visual Perception" = 1
+        //"Motion Control" = 2
+        
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser!.uid
+        let usersReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].id)").child("Modules").childByAutoId()
+
+        let moduleNode = ["Game": selectedModule]
+        usersReference.updateChildValues(moduleNode, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err)
+                return
+            }
+            print(self.selectedModule)
+            print("Saved selected game module successfully into Firebase DB")
+        })
+///////////////////////////////////////////////////////////////////////////////
+        
         //Add the module to the student
         instructor.students[studentIndex].addModule(module: Module(num: selectedModule))
         // Update view
