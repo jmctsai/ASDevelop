@@ -801,16 +801,51 @@
             </objects>
             <point key="canvasLocation" x="2137.5" y="983.59375"/>
         </scene>
-        <!--View Controller-->
+        <!--Motor Control View Controller-->
         <scene sceneID="MLL-YT-EYD">
             <objects>
-                <viewController id="K5y-Ct-nef" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewMotorControlViewController" id="K5y-Ct-nef" customClass="MotorControlViewController" customModule="ASDevelop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAg-bf-5Mg">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="MotorTarget" translatesAutoresizingMaskIntoConstraints="NO" id="1jS-er-r9R">
+                                <rect key="frame" x="783" y="105" width="92" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="G0u-Fa-KSu"/>
+                                    <constraint firstAttribute="height" constant="92" id="Nra-wr-gFj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ModuleProgress" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-mA-NBR">
+                                <rect key="frame" x="3" y="693" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="iSe-dY-WO1"/>
+                                    <constraint firstAttribute="width" constant="72" id="mBy-UX-ci2"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2S-uT-NKp">
+                                <rect key="frame" x="8" y="698" width="50" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ALy-An-Uq9"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="0.80677992105484009" green="0.83414870500564575" blue="0.90474539995193481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="w2S-uT-NKp" firstAttribute="leading" secondItem="10Z-z6-mOE" secondAttribute="leading" constant="8" id="2Hc-Tv-dYA"/>
+                            <constraint firstItem="10Z-z6-mOE" firstAttribute="bottom" secondItem="w2S-uT-NKp" secondAttribute="bottom" constant="36" id="7qV-Kd-cCh"/>
+                            <constraint firstItem="4Vf-mA-NBR" firstAttribute="leading" secondItem="10Z-z6-mOE" secondAttribute="leading" constant="3" id="lw6-9U-ghW"/>
+                            <constraint firstItem="10Z-z6-mOE" firstAttribute="bottom" secondItem="4Vf-mA-NBR" secondAttribute="bottom" constant="3" id="sJE-oR-W6i"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="10Z-z6-mOE"/>
                     </view>
+                    <connections>
+                        <outlet property="ProgressField" destination="w2S-uT-NKp" id="lqv-za-Ii6"/>
+                        <outlet property="TargetImage" destination="1jS-er-r9R" id="PAG-kQ-SNH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpH-Cz-eMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1454,6 +1489,7 @@
         <image name="LogoBig" width="327" height="327"/>
         <image name="ModuleDoneBackground" width="1024" height="768"/>
         <image name="ModuleProgress" width="72" height="70"/>
+        <image name="MotorTarget" width="92" height="92"/>
         <image name="ProgressIcon" width="56" height="56"/>
         <image name="SettingsIcon" width="56" height="56"/>
         <image name="Start" width="337" height="72"/>

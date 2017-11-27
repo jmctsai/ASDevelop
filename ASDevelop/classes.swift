@@ -237,3 +237,26 @@ extension Array {
         }
     }
 }
+
+class ObjectView: UIImageView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    var initialLocation: CGPoint?
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        initialLocation = CGPoint(x: (touch?.location(in: self.superview))!.x - self.center.x, y: (touch?.location(in: self.superview))!.y - self.center.y)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        self.center = CGPoint(x: ((touch?.location(in: self.superview))?.x)! - initialLocation!.x, y: ((touch?.location(in: self.superview))?.y)! - (initialLocation?.y)!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

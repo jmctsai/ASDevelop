@@ -15,6 +15,7 @@
 		19687D2B1FA3AFAA003E4268 /* ASDevelopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19687D2A1FA3AFAA003E4268 /* ASDevelopUITests.swift */; };
 		19691E8A1FACE240007FCCC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19691E891FACE240007FCCC9 /* GoogleService-Info.plist */; };
 		23462B741FB52DE500571EAA /* ModuleFinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23462B731FB52DE500571EAA /* ModuleFinishViewController.swift */; };
+		2366B5691FCB81BB007671FE /* MotorControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2366B5681FCB81BB007671FE /* MotorControlViewController.swift */; };
 		237CC5A81FB398E70098E867 /* InstructorClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237CC5A71FB398E70098E867 /* InstructorClassroomViewController.swift */; };
 		237CC5AD1FB39CF70098E867 /* positive.wav in Resources */ = {isa = PBXBuildFile; fileRef = 237CC5AB1FB39CF70098E867 /* positive.wav */; };
 		237CC5AE1FB39CF70098E867 /* negative.wav in Resources */ = {isa = PBXBuildFile; fileRef = 237CC5AC1FB39CF70098E867 /* negative.wav */; };
@@ -66,6 +67,7 @@
 		19687D2C1FA3AFAB003E4268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19691E891FACE240007FCCC9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23462B731FB52DE500571EAA /* ModuleFinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFinishViewController.swift; sourceTree = "<group>"; };
+		2366B5681FCB81BB007671FE /* MotorControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorControlViewController.swift; sourceTree = "<group>"; };
 		237CC5A71FB398E70098E867 /* InstructorClassroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructorClassroomViewController.swift; sourceTree = "<group>"; };
 		237CC5AB1FB39CF70098E867 /* positive.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = positive.wav; sourceTree = "<group>"; };
 		237CC5AC1FB39CF70098E867 /* negative.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = negative.wav; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				2383125C1FB1267F00DB4993 /* ModuleStartViewController.swift */,
 				2383125F1FB1268000DB4993 /* EmotionRecognitionGameViewController.swift */,
 				E226020B1FC26B9A00DFE92F /* VisualPerceptionGameViewController.swift */,
+				2366B5681FCB81BB007671FE /* MotorControlViewController.swift */,
 				23462B731FB52DE500571EAA /* ModuleFinishViewController.swift */,
 				19687D111FA3AFA9003E4268 /* Assets.xcassets */,
 				237CC5A91FB3994C0098E867 /* Sounds */,
@@ -520,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2366B5691FCB81BB007671FE /* MotorControlViewController.swift in Sources */,
 				238312641FB1268000DB4993 /* StudentModulesViewController.swift in Sources */,
 				238312671FB1268000DB4993 /* NewModuleViewController.swift in Sources */,
 				19687D0D1FA3AFA8003E4268 /* MainLoginViewController.swift in Sources */,

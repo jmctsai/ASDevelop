@@ -16,6 +16,7 @@ class ModuleFinishViewController: UIViewController {
     var ModuleStartViewController:ModuleStartViewController?
     var EmotionRecognitionViewController:EmotionRecognitionViewController?
     var VisualPerceptionViewController:VisualPerceptionViewController?
+    var MotorControlViewController:MotorControlViewController?
     var xpGained = 0
     
     @IBOutlet weak var XPProgressBar: UIImageView!

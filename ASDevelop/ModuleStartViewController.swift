@@ -57,6 +57,9 @@ class ModuleStartViewController: UIViewController {
         else if instructor.students[studentIndex].modules[moduleIndex].name == GlobalModules.names[1] {
             presentVisualPerceptionScreen()
         }
+        else if instructor.students[studentIndex].modules[moduleIndex].name == GlobalModules.names[2] {
+            presentMotorControlScreen()
+        }
     }
     
     @IBAction func unwindToModuleStart(segue: UIStoryboardSegue) {
@@ -77,7 +80,7 @@ class ModuleStartViewController: UIViewController {
         self.present(EmotionRecognitionViewController, animated: true, completion: nil)
     }
     
-    //added by alex
+    // Present the Visual Perception Game
     func presentVisualPerceptionScreen(){
         
         //Create the new view
@@ -89,6 +92,21 @@ class ModuleStartViewController: UIViewController {
         
         //Change the view to the new view
         self.present(VisualPerceptionViewController, animated: true, completion: nil)
+        
+    }
+    
+    // Present the Motor Control Game
+    func presentMotorControlScreen(){
+        
+        //Create the new view
+        let MotorControlViewController:MotorControlViewController = storyboard!.instantiateViewController(withIdentifier: "NewMotorControlViewController") as! MotorControlViewController
+        
+        //Assign the instructor class to the new logged in view
+        MotorControlViewController.studentIndex = studentIndex
+        MotorControlViewController.moduleIndex = moduleIndex
+        
+        //Change the view to the new view
+        self.present(MotorControlViewController, animated: true, completion: nil)
         
     }
     
