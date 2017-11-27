@@ -97,32 +97,47 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         }else{
             let ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
+            print("Current user ID is: \(userID)")
             ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if snapshot.exists(){
-                    
-                    //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
-                    let data = snapshot.value as! NSDictionary
-                    
-                    guard let instructorEmail = data["Email"] as! String! else {return}
-       
-                    //Save instructor email from snapshot to the instructor class
-                    instructor.changeEmail(email: instructorEmail)
-                    print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
-                    
-                    //Module
-                    
-                    //firstName
-                    
-                    //age
-                    
-                    //photo
-                    
-                    //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
-                    
-                }else{
+                if !snapshot.exists(){
                     print("snapshot does not exist")
+                    return
                 }
+                
+                print (snapshot)
+                
+                let instructorData = snapshot.value as! NSDictionary
+                
+                guard let instructorEmail = instructorData["Email"] as! String! else {return}
+
+                //INSTRUCTOR EMAIL
+                instructor.changeEmail(email: instructorEmail)
+                print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
+                
+//https://stackoverflow.com/questions/38797626/firebase-and-reading-nested-data-using-swift
+//                    ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//                        print (snapshot)
+//
+//                        let studentData = snapshot.value as! NSDictionary
+//
+//                    }, withCancel: nil)
+                
+                    //MODULE
+
+                    //FIRSTNAME
+                        //let studentFirstName = data["First_Name"] as! String!
+                        //print("Student First Name is: \(studentFirstName)")
+
+                    //AGE
+                        //let studentAge = data["Age"] as! Int!
+                        //print("Student Age is: \(studentAge)")
+
+                    //PHOTO
+                
+          
+                    
+                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
                 
             }, withCancel: nil)
         }

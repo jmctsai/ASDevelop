@@ -130,27 +130,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         let currentGameID = gameReference.key
         print("current Game ID is : \(currentGameID)")
         
-//        //QUERY STUDENT DATA, SAVE STUDENT AGE, FIRST NAME
-//        usersReference.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            if snapshot.exists(){
-//
-//                //print (snapshot)       //snap(value) {Email = "email@gmail.com"}
-//                let data = snapshot.value as! NSDictionary
-//
-//                guard let studentAge = data["Age"] as! String! else {return}
-//                guard let studentFirstName = data["First_Name"] as! String! else {return}
-//
-//                print("Student age is: \(studentAge)")
-//                print("Student First Name is: \(studentFirstName)")
-//
-//            }else{
-//                print("snapshot does not exist")
-//            }
-//
-//        }, withCancel: nil)
-
-        
+ 
         //======don't touch================================================================
         //Create new student class
         //let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID)
