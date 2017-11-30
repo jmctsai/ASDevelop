@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var TakeAPhotoButton: UIButton!
     @IBOutlet weak var AddAPhotoButton: UIButton!
     var InstructorClassroomViewController:InstructorClassroomViewController?
     var studentPhoto:UIImage?
@@ -56,7 +57,25 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    //Added by alex to add photo taking in version 3
+    //the simulator doesn't have a camera so the code can't be tested until we have an actual iPad
+    //code taken from https://www.youtube.com/watch?v=m0cuCmFjxx0
+    //MARK: - Take image
+    @IBAction func takePhoto(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+            
+        }
+    }
 
+    //end of alex's changes
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)

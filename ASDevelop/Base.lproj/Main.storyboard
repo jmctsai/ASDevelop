@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1452,12 +1452,25 @@
                                     <action selector="newStudentButtonTapped:" destination="8NQ-NJ-nwD" eventType="touchUpInside" id="K68-Cn-rIl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VK-6Q-DUQ">
+                                <rect key="frame" x="450" y="125" width="337" height="224"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="337" id="3x1-ok-rUG"/>
+                                    <constraint firstAttribute="height" constant="224" id="TLE-kc-BAq"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="CameraCartoon"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="8NQ-NJ-nwD" eventType="touchUpInside" id="T6Y-U4-GhO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.11009805649518967" green="0.56524413824081421" blue="0.90576452016830444" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="4VK-6Q-DUQ" firstAttribute="leading" secondItem="8Xb-Pf-Suu" secondAttribute="trailing" constant="20" id="1hw-ol-91G"/>
                             <constraint firstItem="8Xb-Pf-Suu" firstAttribute="top" secondItem="380-lq-QlW" secondAttribute="top" constant="30" id="5Wt-Ng-aVV"/>
                             <constraint firstItem="380-lq-QlW" firstAttribute="bottom" secondItem="QPg-ER-1fT" secondAttribute="bottom" constant="65" id="6JE-od-tOo"/>
                             <constraint firstItem="380-lq-QlW" firstAttribute="trailing" secondItem="VOC-Kd-9o3" secondAttribute="trailing" constant="20" id="GtV-vX-2bp"/>
+                            <constraint firstItem="4VK-6Q-DUQ" firstAttribute="centerY" secondItem="tcW-4f-GfT" secondAttribute="centerY" constant="-147" id="JTZ-HL-jk3"/>
                             <constraint firstItem="8Xb-Pf-Suu" firstAttribute="leading" secondItem="380-lq-QlW" secondAttribute="leading" constant="30" id="Oze-IU-G9w"/>
                             <constraint firstItem="VOC-Kd-9o3" firstAttribute="top" secondItem="380-lq-QlW" secondAttribute="top" constant="20" id="fcy-Fe-Ytr"/>
                             <constraint firstItem="380-lq-QlW" firstAttribute="trailing" secondItem="QPg-ER-1fT" secondAttribute="trailing" constant="75" id="sA2-t4-58L"/>
@@ -1466,6 +1479,7 @@
                     </view>
                     <connections>
                         <outlet property="AddAPhotoButton" destination="itG-nC-zf3" id="5fG-yw-0QZ"/>
+                        <outlet property="TakeAPhotoButton" destination="4VK-6Q-DUQ" id="qve-pa-60g"/>
                         <outlet property="ageTextField" destination="6Ao-BP-OL2" id="3Cz-mW-WWF"/>
                         <outlet property="firstNameTextField" destination="abK-Yf-Yps" id="gdu-we-rGF"/>
                         <outlet property="lastNameTextField" destination="GAm-ga-9VJ" id="Nmc-4W-KTV"/>
@@ -1480,6 +1494,7 @@
         <image name="AddPhoto" width="337" height="230"/>
         <image name="BackButton" width="28" height="28"/>
         <image name="BackToModules" width="212" height="45"/>
+        <image name="CameraCartoon" width="259" height="194"/>
         <image name="Continue" width="327" height="70"/>
         <image name="DoneButton" width="36" height="28"/>
         <image name="DropdownLong" width="341" height="39"/>
