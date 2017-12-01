@@ -11,12 +11,16 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    @IBOutlet weak var TakeAPhotoButton: UIButton!
     @IBOutlet weak var AddAPhotoButton: UIButton!
     var InstructorClassroomViewController:InstructorClassroomViewController?
     var studentPhoto:UIImage?
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -40,60 +44,57 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func selectImageFromPhotoLibrary(_ sender: Any) {
-
-        // Hide the keyboard.
-        firstNameTextField.resignFirstResponder()
-        lastNameTextField.resignFirstResponder()
-        ageTextField.resignFirstResponder()
+    /////////////////////--------------------------
+    @IBAction func chooseImage(_ sender: Any) {
         
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = LandscapeUIImagePickerController()
-
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .photoLibrary
-
-        // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        
+        
+        let actionSheet = UIAlertController(title:"Photo Source", message: "Choose Source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+            
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated: true, completion: nil)
+            }
+            else{
+               print("Camera not available")
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action:UIAlertAction) in }))
+        
+        
+        actionSheet.popoverPresentationController?.sourceView = self.view
+        actionSheet.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
+        actionSheet.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+        
     }
     
-    //Added by alex to add photo taking in version 3
-    //the simulator doesn't have a camera so the code can't be tested until we have an actual iPad
-    //code taken from https://www.youtube.com/watch?v=m0cuCmFjxx0
-    //MARK: - Take image
-    @IBAction func takePhoto(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
-            
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-            
-        }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        studentPhoto = createStudentImage(image: image)
+        AddAPhotoButton.setImage(createNewImage(image: image), for: .normal)
+        
+        picker.dismiss(animated: true, completion: nil)
+        
     }
-
-    //end of alex's changes
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
-        // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-
-        // Set photoImageView to display the selected image.
-        studentPhoto = createStudentImage(image: selectedImage)
-        AddAPhotoButton.setImage(createNewImage(image: selectedImage), for: .normal)
-
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
  
     //REGISTER BUTTON TAPPED
@@ -196,3 +197,7 @@ func createNewImage(image: UIImage) -> UIImage {
     
     return newImage!
 }
+
+// Set photoImageView to display the selected image.
+//studentPhoto = createStudentImage(image: selectedImage)
+//AddAPhotoButton.setImage(createNewImage(image: selectedImage), for: .normal)
