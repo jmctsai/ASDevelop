@@ -56,7 +56,7 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
         // ID of current STUDENT
         
         // Setting up game ID for finished view module
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(moduleIndexArray)")
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
         //let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
 
         // ID of current GAME
