@@ -103,42 +103,63 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                     print("snapshot does not exist")
                     return
                 }
-                
-                print (snapshot)
-                
+                //print (snapshot)
+
                 let instructorData = snapshot.value as! NSDictionary
                 
                 guard let instructorEmail = instructorData["Email"] as! String! else {return}
 
                 //INSTRUCTOR EMAIL
                 instructor.changeEmail(email: instructorEmail)
-                //print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
-                
+                print ("\nCurrently logged in Instructor email is: \(instructor.email)")      //instructor1@gmail.com
+
 //https://stackoverflow.com/questions/38797626/firebase-and-reading-nested-data-using-swift
-//                    ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                        print (snapshot)
-//
-//                        let studentData = snapshot.value as! NSDictionary
-//
-//                    }, withCancel: nil)
+                    ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if !snapshot.exists(){
+                            print("snapshot does not exist")
+                            return
+                        }
+                        print("\nNumber of student's under \(instructorEmail) is: \(snapshot.childrenCount)")
+                        let studentData = snapshot.children
+                        while let studentInfo = studentData.nextObject() as? DataSnapshot{
+                            
+                            //ALL EXISTING STUDENT ID
+                            //print(studentInfo.key)
+                            
+                            //store individual student INFO
+                            ref.child("Instructors").child(userID!).child("Student").child("\(studentInfo.key)").observeSingleEvent(of: .value, with: { (snapshot) in
+                                if !snapshot.exists(){
+                                    print("snapshot does not exist")
+                                    return
+                                }
+                                let studentDict = snapshot.value as! NSDictionary
+                                
+                                //Unique Student Auto ID
+                                print("\nStudent's ID is: \(studentInfo.key)")
+                                //AGE (need to convert from string to int)
+                                guard let studentAge = studentDict["Age"] as! String! else {return}
+                                print ("Student's age is: \(studentAge)")
+                                //FIRSTNAME
+                                guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
+                                print ("Student's First Name is: \(studentFirstName)")
+                                //LASTNAME
+                                guard let studentLastName = studentDict["Last_Name"] as! String! else {return}
+                                print ("Student's Last Name is: \(studentLastName)")
+                                //PROFILE IMAGE URL
+                                guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
+                                print ("Student's profile image is stored here: \(profileImageURL)")
+                                //MODULE
+                                //to do
+                                
+                                
+                                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+                            }, withCancel: nil)
+                            //while loop will iterate thru all the student nodes.
+                        }// END OF LOOP iterating through all the students
+
+                    }, withCancel: nil)
                 
-                    //MODULE
-
-                    //FIRSTNAME
-                        //let studentFirstName = data["First_Name"] as! String!
-                        //print("Student First Name is: \(studentFirstName)")
-
-                    //AGE
-                        //let studentAge = data["Age"] as! Int!
-                        //print("Student Age is: \(studentAge)")
-
-                    //PHOTO
-                    //if let profileImageUrl = Student.changePhoto(<#T##Student#>)
-                
-          
-                    
-                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+              
                 
             }, withCancel: nil)
         }
