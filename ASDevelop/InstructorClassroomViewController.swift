@@ -148,8 +148,24 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                 //PROFILE IMAGE URL
                                 guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
                                 print ("Student's profile image is stored here: \(profileImageURL)")
-                                //MODULE
-                                //to do
+//                                let storageRef = Storage.storage().reference(forURL: profileImageURL)
+//                                storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+//                                    let pic = UIImage(data: data!)
+//                                }
+//                                //MODULE
+//                                ref.child("Instructors").child(userID!).child("Student").child("\(studentInfo.key)").observeSingleEvent(of: .value, with: { (snapshot) in
+//                                    if !snapshot.exists(){
+//                                        print("snapshot does not exist")
+//                                        return
+//                                    }
+//                                    print("\nNumber of Modules student with ID: \(studentInfo.key) have: \(snapshot.childrenCount)")
+//                                    let moduleData = snapshot.children
+//                                    while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
+//                                        print (studentModuleInfo.key)
+//                                        print("\nStudent's moudule contains: \(studentModuleInfo.key)")
+//                                    }
+//
+//                                }
                                 
                                 
                                 //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))

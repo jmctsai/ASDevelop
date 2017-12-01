@@ -16,17 +16,15 @@ class Module {
     var xp: Int
     var modulePhoto: UIImage?
     var startPhoto: UIImage?
-    var gameID: String
     var timedXP: TimedXP
     
-    init(name: String, level: Int, modulePhoto: UIImage?, startPhoto: UIImage?, xp: Int, gameID: String)
+    init(name: String, level: Int, modulePhoto: UIImage?, startPhoto: UIImage?, xp: Int)
     {
         self.name = name
         self.level = level
         self.modulePhoto = modulePhoto
         self.startPhoto = startPhoto
         self.xp = xp
-        self.gameID = gameID
         if xp > 0
         {
             self.timedXP = TimedXP(xp: xp)
@@ -44,7 +42,6 @@ class Module {
         self.startPhoto = GlobalModules.startPhotos[num]
         self.level = 1
         self.xp = 0
-        self.gameID = ""
         self.timedXP = TimedXP()
     }
     

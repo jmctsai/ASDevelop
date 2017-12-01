@@ -51,12 +51,19 @@ class ModuleFinishViewController: UIViewController {
         XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
         XPCurrentField.text = "\(instructor.students[studentIndex].modules[moduleIndex].xp)/100 xp"
         
-        
+        var selectedModule = 0
+        var i = 0
+        for moduleName in GlobalModules.names {
+            if instructor.students[studentIndex].modules[moduleIndex].name == moduleName {
+                selectedModule = i
+            }
+            i = i + 1
+        }
         
         //s==============STORE GAME DATA name, level, exp==================
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(moduleIndex)")
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
 
         //Save XP and Level under the specific game Module
         let gameNode = ["Xp": instructor.students[studentIndex].modules[moduleIndex].xp,
