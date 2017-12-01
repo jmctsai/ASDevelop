@@ -124,18 +124,8 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         let currentStudentID = usersReference.key
         print("current Student ID is : \(currentStudentID)")
 
-        // Setting up game ID for finished view module
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child(currentStudentID).child("Modules").childByAutoId()
-        // ID of current GAME
-        let currentGameID = gameReference.key
-        print("current Game ID is : \(currentGameID)")
-        
- 
-        //======don't touch================================================================
         //Create new student class
-        //let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID)
-        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID, gameID : currentGameID )
-        //===================================================================================
+        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID)
         
         //////////////////////////////////////////////////////////////////////
         //==== STORING OF USER IMAGE =======
@@ -154,13 +144,20 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             photoRef.putData(uploadData, metadata: metadata).observe(.success) { (snapshot) in
                 //When the image has successfully uploaded, we get it's download URL
                 let downloadURL = snapshot.metadata?.downloadURL()?.absoluteString
-                // ===== Set the download URL to the message box, so that the user can send it to the database
-                //self.messageTextField.text = text
-                //print(metadata)
                 //print(downloadURL)  //https://firebasestorage.googleapis.com/v0/b/asdevelop-group03.appspot.com/o/student_photos%2FD4DEA135-12A2-4EAD-9324-5E0A15C75759.png?alt=media&token=93a3a804-19cf-4626-9520-f072cf353c6a
+                
+                //Update Student with their profile image URL location
+                let studentReference = ref.child("Instructors").child(userID).child("Student").child(currentStudentID)
+                let value = ["profileImageURL": downloadURL]
+                studentReference.updateChildValues(value, withCompletionBlock: { (err, ref) in
+                    if err != nil {
+                        print(err)
+                        return
+                    }
+                    print("Saved profile image successfully into Firebase DB")
+                })
             }
         }
-        // take snapshot of currentStudentID => than store Age, First_Name to global variable
         ///////////////////////////////////////////////////////////////////////
         
         //Pass student class to logged in module

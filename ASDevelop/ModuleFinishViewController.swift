@@ -56,11 +56,9 @@ class ModuleFinishViewController: UIViewController {
         //s==============STORE GAME DATA name, level, exp==================
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(instructor.students[studentIndex].gameID)")
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(moduleIndex)")
 
-        print("xp is stored under this ID: \(gameReference.key)")
-        
-        // need to move this under the specfic game node
+        //Save XP and Level under the specific game Module
         let gameNode = ["Xp": instructor.students[studentIndex].modules[moduleIndex].xp,
                         "Level": instructor.students[studentIndex].modules[moduleIndex].level]
         gameReference.updateChildValues(gameNode, withCompletionBlock: { (err, ref) in

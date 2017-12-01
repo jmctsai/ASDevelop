@@ -56,31 +56,33 @@ class RegisterPageViewController: UIViewController {
         
         if let userEmail = userEmailTextField.text , let userPassword = userPasswordTextField.text {
             Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion: { (user, error) in
+
                 if let firebaseError = error {
                     print(firebaseError.localizedDescription)
                     //ERRORS (to be added)
                     //https://firebase.google.com/docs/auth/ios/errors
                     //"Email already in Use"
                     self.displayMyAlertMessage(userMessage: "Registration Failed.. Please Try Again")
+                    //self.displayMyAlertMessage(userMessage: "Error: \(firebaseError.localizedDescription)")
                     return
                 }
                 
-                //USER REFERENCEING USER ID/////////////////////
-                let ref = Database.database().reference()
-                guard let uid = user?.uid else{
-                    return
-                }
-                let usersReference = ref.child("Instructors").child(uid)
-                let instructorNode = ["Email": userEmail]
-                usersReference.updateChildValues(instructorNode, withCompletionBlock: { (err, ref) in
-                    if err != nil {
-                        print(err)
+                    //USER REFERENCEING USER ID/////////////////////
+                    let ref = Database.database().reference()
+                    guard let uid = user?.uid else{
                         return
                     }
-                print("Saved instructors successfully into Firebase DB")
+                    let usersReference = ref.child("Instructors").child(uid)
+                    let instructorNode = ["Email": userEmail]
+                    usersReference.updateChildValues(instructorNode, withCompletionBlock: { (err, ref) in
+                        if err != nil {
+                            print(err)
+                            return
+                        }
+                    print("Saved instructors successfully into Firebase DB")
+                    })
+                
                 })
-                ///////////////////////////////////////////////
-            })
             
             self.displayMyAlertMessage(userMessage: "You are successfully registered")
             return

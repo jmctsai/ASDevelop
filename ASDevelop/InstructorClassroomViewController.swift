@@ -112,7 +112,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
 
                 //INSTRUCTOR EMAIL
                 instructor.changeEmail(email: instructorEmail)
-                print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
+                //print ("Instructor email is \(instructor.email)")      //instructor1@gmail.com
                 
 //https://stackoverflow.com/questions/38797626/firebase-and-reading-nested-data-using-swift
 //                    ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -134,6 +134,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                         //print("Student Age is: \(studentAge)")
 
                     //PHOTO
+                    //if let profileImageUrl = Student.changePhoto(<#T##Student#>)
                 
           
                     
