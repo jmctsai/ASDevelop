@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var studentModulesViewController:StudentModulesViewController?
     var studentIndex = 0
+    var gameIndex = 0
     var photoArray = [UIImage]()
     var moduleIndexArray = [Int]()
     var selectedModule = -1
@@ -43,6 +47,53 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Choose the module added
         selectedModule = moduleIndexArray[indexPath.row]
+        
+//////////////////////////////////////////////////////////////////////////////
+        // =========== STORING OF USER MODULES ==========
+
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser!.uid
+        
+        
+        
+        // Setting up game ID for finished view module
+//        //let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
+//        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
+//
+//        // ID of current GAME
+//        let currentGameID = gameReference.key
+//        print("current Game ID is : \(currentGameID)")
+//
+//        let moduleNode = ["Game": selectedModule]
+//        //usersReference.setValue(moduleNode)
+//        gameReference.updateChildValues(moduleNode, withCompletionBlock: { (err, ref) in
+//            if err != nil {
+//                print(err)
+//                return
+//            }
+//            //module ID
+//            //0 = "Emotion Identification"
+//            //1 = "Visual Perception"
+//            //2 = "Motion Control"
+//            print("Selected Game type : \(self.selectedModule)")
+//            print("Saved selected game type of 0,1,2 successfully into Firebase DB")
+//        })
+        
+        
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("Game \(selectedModule)")
+        
+        //Initialize Game Module with exp and level of 0 on module creation
+        let gameNode = ["Xp": 0,
+                        "Level": 0]
+        gameReference.updateChildValues(gameNode, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err)
+                return
+            }
+            print("Initialize Game Module")
+        })
+///////////////////////////////////////////////////////////////////////////////
+        
         //Add the module to the student
         instructor.students[studentIndex].addModule(module: Module(num: selectedModule))
         // Update view

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class MainLoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -29,11 +30,6 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    //Initialize the new instructor class
-    func initializeInstructor() {
-        instructor = Instructor()
-    }
-
     //SIGN IN BUTTON TAPPED
     func textFieldShouldReturn(_ passwordTextField: UITextField) -> Bool {
         //check if field populated
@@ -41,11 +37,12 @@ class MainLoginViewController: UIViewController, UITextFieldDelegate {
         
         if let userEmail = emailTextField.text, let userPassword = passwordTextField.text {
             Auth.auth().signIn(withEmail: userEmail, password: userPassword, completion: { (user, error) in
+
                 if let firebaseError = error {
                     print(firebaseError.localizedDescription)
                     self.displayMyAlertMessage(userMessage: "Login Failed.. Please Try Again")
                 }
-                
+ 
                 //Parse Json and apply attributes to instructor class
                 instructor.email = userEmail
                 

@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+class InstructorClassroomViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
     var MainLoginViewController:MainLoginViewController?
     var photoArray = [textToImage(drawText: "+ Add Student", inImage: UIImage(named:"AddButton.png")!, atPoint: CGPoint(x: 15,y: 235))]
@@ -23,6 +24,8 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         // Allow the view controller to automatically update collection view data
         self.StudentCollectionView.delegate = self
         self.StudentCollectionView.dataSource = self
+
+        initializeInstructor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +87,139 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //Initialize the new instructor class
+    func initializeInstructor() {
+        instructor = Instructor()
+        
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogout),with: nil, afterDelay: 0)
+        }else{
+            let ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            print("Current instructor ID is: \(userID)")
+            ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                if !snapshot.exists(){
+                    print("snapshot does not exist")
+                    return
+                }
+                let instructorData = snapshot.value as! NSDictionary
+                
+                //INSTRUCTOR EMAIL
+                guard let instructorEmail = instructorData["Email"] as! String! else {return}
+                instructor.changeEmail(email: instructorEmail)
+                print ("\nCurrently logged in Instructor email is: \(instructor.email)")      //instructor1@gmail.com
+
+                //STUDENT
+                    ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if !snapshot.exists(){
+                            print("snapshot does not exist")
+                            return
+                        }
+                        print("\nNumber of student's under \(instructorEmail) is: \(snapshot.childrenCount)")
+                        let studentData = snapshot.children
+                        while let studentInfo = studentData.nextObject() as? DataSnapshot{
+                            //STUDENT ID
+                            let studentID = studentInfo.key
+                            
+                            //EACH STUDENNT'S NODE
+                            ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").observeSingleEvent(of: .value, with: { (snapshot) in
+                                if !snapshot.exists(){
+                                    print("snapshot does not exist")
+                                    return
+                                }
+                                let studentDict = snapshot.value as! NSDictionary
+
+                                //AGE,FIRST NAME, PROFILE IMAGE, MODULE
+                                ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").child("Modules").observeSingleEvent(of: .value, with: { (snapshot) in
+                                    if !snapshot.exists(){
+                                        print("snapshot does not exist")
+                                        return
+                                    }
+                                    
+                                    //Module Name "Game 0, Game 1, Game 2"
+                                    let moduleData = snapshot.children
+                                    while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
+                                        
+                                        let moduleName = studentModuleInfo.key
+
+                                        ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").child("Modules").child("\(moduleName)").observeSingleEvent(of: .value, with: { (snapshot) in
+                                            if !snapshot.exists(){
+                                                print("snapshot does not exist")
+                                                return
+                                            }
+                                            print("\nStudent's ID is: \(studentID)") //Unique Student Auto ID
+                                            
+                                            //AGE
+                                            guard let studentAge = studentDict["Age"] as! String! else {return}
+                                            let studentAgeInt = Int(studentAge)
+                                            print ("Student's age is: \(studentAgeInt!)")
+                                            
+                                            //FIRSTNAME
+                                            guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
+                                            print ("Student's First Name is: \(studentFirstName)")
+                                            
+                                            //PROFILE IMAGE URL
+                                            guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
+                                            print ("Student's profile image is stored here: \(profileImageURL)")
+                                            let storageRef = Storage.storage().reference(forURL: profileImageURL)
+                                            storageRef.downloadURL(completion: { (url, error) in
+                                                let optData = try? Data(contentsOf: url!)
+                                                guard let data = optData else{return}
+                                                let profileImage = UIImage(data: data as Data)
+                                                
+                                            })
+                                            
+                                            print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
+                                            print("Game Name: \(moduleName)")
+                                            //0 - emtional recognition
+                                            //1 - visual perception
+                                            //2 - motor control
+                                            
+                                            let moduleDict = snapshot.value as! NSDictionary
+
+                                            guard let gameLevel = moduleDict["Level"] as! Int! else {return}
+                                            guard let gameXP = moduleDict["Xp"] as! Int! else {return}
+                                            print("Level: \(gameLevel)")
+                                            print("EXP: \(gameXP)")
+                                            let gameLevelInt = Int(gameLevel)
+                                            let gameXPInt = Int (gameXP)
+                                            
+                                            //ADD STUFF TO MODULE ARRAY (maybe not here)
+                                            
+//VARIABLES OBTAINED FROM FETCHING FROM FIREBASE//////////////////////////////////////////////////////////////////////////////////////////
+//                                            Student
+//                                                studentAgeInt       //int - age "5"
+//                                                studentFirstName    //string - firstName "Bob"
+//                                                profileImage        //UIImage - profileImageURL "an image"
+//                                            Module
+//                                                moduleName          //string - "Game 0"
+//                                                gameLevelInt        //int - level "1"
+//                                                gameXPInt           //int - xp "60"
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    
+                                        }, withCancel: nil)
+                                    }
+                                }, withCancel: nil)
+                                //ADD STUFF TO INSTRUCTOR CLASS (maybe not here)
+                                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>, studentID: <#T##String#>))
+                            }, withCancel: nil)
+                        }// END OF LOOP iterating through all the students
+
+                    }, withCancel: nil)
+                
+            }, withCancel: nil)
+        }
+    }
+    
+    @objc func handleLogout(){
+        do{
+            try Auth.auth().signOut()
+        }catch let logoutError {
+            print(logoutError)
+        }
+    }
+    
     
     // Back,Logout button tapped
     @IBAction func logoutTapped(_ sender: Any) {
