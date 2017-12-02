@@ -167,7 +167,6 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                                 let optData = try? Data(contentsOf: url!)
                                                 guard let data = optData else{return}
                                                 let profileImage = UIImage(data: data as Data)
-                                                
                                             })
                                             
                                             print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
@@ -192,6 +191,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
 //                                                studentAgeInt       //int - age "5"
 //                                                studentFirstName    //string - firstName "Bob"
 //                                                profileImage        //UIImage - profileImageURL "an image"
+//                                                studentID           //String - studentID "-L-JDcrpWxLGsZZMuvOR"
 //                                            Module
 //                                                moduleName          //string - "Game 0"
 //                                                gameLevelInt        //int - level "1"
