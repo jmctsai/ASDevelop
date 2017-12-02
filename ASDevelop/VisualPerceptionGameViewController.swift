@@ -17,15 +17,7 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     var quizNumber = 0
     var ModuleStartViewController:ModuleStartViewController?
     
-    let totalQuestions = 10
-    var currentQuestion = 0
-    var correctAnswer = 0
-    var answersCorrect = 0
-    
-    var correctSound:AVAudioPlayer?
-    var incorrectSound:AVAudioPlayer?
-    
-    // 22 indices, accessed 0 - 21
+    //21 images
     let objectImages = [UIImage(named: "apple.png")!,
                         UIImage(named: "banana.png")!,
                         UIImage(named: "campfire.png")!,
@@ -33,7 +25,6 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
                         UIImage(named: "cow.png")!,
                         UIImage(named: "crab.png")!,
                         UIImage(named: "drum.png")!,
-                        UIImage(named: "emoji.png")!,
                         UIImage(named: "flipflops.png")!,
                         UIImage(named: "guitar.png")!,
                         UIImage(named: "icecream.png")!,
@@ -47,14 +38,49 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
                         UIImage(named: "strawberry.png")!,
                         UIImage(named: "sun.png")!,
                         UIImage(named: "umbrella.png")!,
-                        UIImage(named: "watermelon.png")!
-    ]
+                        UIImage(named: "watermelon.png")!] //21
+    
+    let objectImages_level2 = [UIImage(named: "apple_level2.png")!,
+                               UIImage(named: "banana_level2.png")!,
+                               UIImage(named: "campfire_level2.png")!,
+                               UIImage(named: "mapleleaf_level2.png")!,
+                               UIImage(named: "cow_level2.png")!,
+                               UIImage(named: "crab_level2.png")!,
+                               UIImage(named: "drum_level2.png")!,
+                               UIImage(named: "flipflops_level2.png")!,
+                               UIImage(named: "guitar_level2.png")!,
+                               UIImage(named: "icecream_level2.png")!,
+                               UIImage(named: "owl_level2.png")!,
+                               UIImage(named: "pig_level2.png")!,
+                               UIImage(named: "pineapple_level2.png")!,
+                               UIImage(named: "popsicle_level2.png")!,
+                               UIImage(named: "pumpkin_level2.png")!,
+                               UIImage(named: "rabbit_level2.png")!,
+                               UIImage(named: "shovel_level2.png")!,
+                               UIImage(named: "strawberry_level2.png")!,
+                               UIImage(named: "sun_level2.png")!,
+                               UIImage(named: "umbrella_level2.png")!,
+                               UIImage(named: "watermelon_level2.png")!]    //
+    
+    
+    
+    
+    let totalQuestions = 10
+    var currentQuestion = 0
+    var correctAnswer = 0
+    var answersCorrect = 0
+    
+    var correctSound:AVAudioPlayer?
+    var incorrectSound:AVAudioPlayer?
     
     
     //couldnt figure out how to make an array with size 9 so i just used apple.png as placeholders
     var PhotoArray_3x3:[UIImage] = [UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
                                     UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
                                     UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!]
+    var PhotoArray_3x3_level2:[UIImage] = [UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
+                                           UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
+                                           UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!]
     var questions_Images:[UIImage] = [UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
                                       UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
                                       UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!]
@@ -91,6 +117,9 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
         ModuleProgressField.isUserInteractionEnabled = false
         buttonSubmit.layer.cornerRadius = 5
         
@@ -116,13 +145,19 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     func nextQuestion(){
         
         //populates photoArray with random images
-        generatePhotoArray(photoArray: &PhotoArray_3x3)
+        generatePhotoArray(photoArray: &PhotoArray_3x3, photos: objectImages,currentQ: currentQuestion)
         
         //populates answers_Images with 3 images as the questions
         generateQuestions(photoArray: PhotoArray_3x3, questions: &questions_Images)
         
         //populates answers_boolean with true and false values
         getAnswers(photoArray: PhotoArray_3x3, answers: &answers_boolean, questions: questions_Images)
+        
+        if(instructor.students[studentIndex].modules[moduleIndex].level > 1){
+            //populates photoArray with random images from level 2
+            generatePhotoArray(photoArray: &PhotoArray_3x3, photos: objectImages_level2, currentQ: currentQuestion)
+            
+        }
         
         //reset answers and boxes
         resetCheckBox(thisResponse: &responses_boolean[0], thisButton: topCheckbox)
@@ -193,14 +228,18 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     //generates an array of 9 images randomly
-    func generatePhotoArray(photoArray: inout [UIImage]){
+    func generatePhotoArray(photoArray: inout [UIImage], photos: [UIImage], currentQ: Int){
         
-        let seed = UInt32(objectImages.count)
+        //let seed = UInt32(objectImages.count)
         
-        let randNum = Int(arc4random_uniform(seed))
+        //let randNum = Int(arc4random_uniform(seed))
+        
+        //made it nonrandom just so the level 2 images could be implemented easily
+        //to make this part random, save the randNum for both function calls since this wil get called twice
         
         for i in 0...8{
-            photoArray[i] = objectImages[(randNum + 2 + i) % objectImages.count]
+            //photoArray[i] = photos[(randNum + 2 + i) % photos.count]
+            photoArray[i] = photos[(2*i + currentQ) % photos.count]
         }
         
     }
