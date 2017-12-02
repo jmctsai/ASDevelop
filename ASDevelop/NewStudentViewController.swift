@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class NewStudentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -124,13 +125,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         
-        //Create new student class
-        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto)
-        
-        //Pass student class to logged in module
-        instructor.students.append(student)
-        
-        //REFERENCEING USER ID FOR NESTING IN DATABASE////////////////////////
+        //Reference current user ID to store into Firebase database
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
         let usersReference = ref.child("Instructors").child(userID).child("Student").childByAutoId()
@@ -142,9 +137,51 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
                 print(err)
                 return
             }
-            print("Saved student data successfully into Firebase DB")
+            print("Saved student data, F.Name, L.Name, Age successfully into Firebase DB")
         })
+        
+        // ID of current STUDENT
+        let currentStudentID = usersReference.key
+        print("current Student ID is : \(currentStudentID)")
+
+        //Create new student class
+        let student = Student(modules: [Module](), firstName: firstName!, age: age!, photo: studentPhoto, studentID: currentStudentID)
+        
         //////////////////////////////////////////////////////////////////////
+        //==== STORING OF USER IMAGE =======
+        
+        // Get a reference to the loaction where we'll store our photos
+        let photosRef = Storage.storage().reference().child("student_photos")
+
+        // Get a reference to store the file at student_photos/<FILENAME>
+        //let photoRef = photosRef.child("\(NSUUID().uuidString).png")
+        let photoRef = photosRef.child("\(currentStudentID).png")
+        
+        // Upload student photo to Firebase Storage
+        if let uploadData = UIImagePNGRepresentation(studentPhoto!) {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            photoRef.putData(uploadData, metadata: metadata).observe(.success) { (snapshot) in
+                //When the image has successfully uploaded, we get it's download URL
+                let downloadURL = snapshot.metadata?.downloadURL()?.absoluteString
+                //print(downloadURL)  //https://firebasestorage.googleapis.com/v0/b/asdevelop-group03.appspot.com/o/student_photos%2FD4DEA135-12A2-4EAD-9324-5E0A15C75759.png?alt=media&token=93a3a804-19cf-4626-9520-f072cf353c6a
+                
+                //Update Student with their profile image URL location
+                let studentReference = ref.child("Instructors").child(userID).child("Student").child(currentStudentID)
+                let value = ["profileImageURL": downloadURL]
+                studentReference.updateChildValues(value, withCompletionBlock: { (err, ref) in
+                    if err != nil {
+                        print(err)
+                        return
+                    }
+                    print("Saved profile image successfully into Firebase DB")
+                })
+            }
+        }
+        ///////////////////////////////////////////////////////////////////////
+        
+        //Pass student class to logged in module
+        instructor.students.append(student)
         
         //Go back to student module
         dismiss(animated: true, completion: nil)
