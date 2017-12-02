@@ -137,6 +137,27 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                         return
                                     }
                                     
+                                    //AGE
+                                    guard let studentAge = studentDict["Age"] as! String! else {return}
+                                    let studentAgeInt = Int(studentAge)
+                                    print ("\nStudent's age is: \(studentAgeInt!)")
+                                    
+                                    //FIRSTNAME
+                                    guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
+                                    print ("Student's First Name is: \(studentFirstName)")
+                                    
+                                    //PROFILE IMAGE URL
+                                    guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
+                                    print ("Student's profile image is stored here: \(profileImageURL)")
+                                    let storageRef = Storage.storage().reference(forURL: profileImageURL)
+                                    storageRef.downloadURL(completion: { (url, error) in
+                                        let optData = try? Data(contentsOf: url!)
+                                        guard let data = optData else{return}
+                                        let profileImage = UIImage(data: data as Data)
+                                        
+                                    })
+                                    print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
+
                                     //Module Name "Game 0, Game 1, Game 2"
                                     let moduleData = snapshot.children
                                     while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
@@ -148,43 +169,18 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                                 print("snapshot does not exist")
                                                 return
                                             }
-                                            print("\nStudent's ID is: \(studentID)") //Unique Student Auto ID
-                                            
-                                            //AGE
-                                            guard let studentAge = studentDict["Age"] as! String! else {return}
-                                            let studentAgeInt = Int(studentAge)
-                                            print ("Student's age is: \(studentAgeInt!)")
-                                            
-                                            //FIRSTNAME
-                                            guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
-                                            print ("Student's First Name is: \(studentFirstName)")
-                                            
-                                            //PROFILE IMAGE URL
-                                            guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
-                                            print ("Student's profile image is stored here: \(profileImageURL)")
-                                            let storageRef = Storage.storage().reference(forURL: profileImageURL)
-                                            storageRef.downloadURL(completion: { (url, error) in
-                                                let optData = try? Data(contentsOf: url!)
-                                                guard let data = optData else{return}
-                                                let profileImage = UIImage(data: data as Data)
-                                                
-                                            })
-                                            
-                                            print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
-                                            print("Game Name: \(moduleName)")
-                                            //0 - emtional recognition
-                                            //1 - visual perception
-                                            //2 - motor control
-                                            
                                             let moduleDict = snapshot.value as! NSDictionary
 
+                                            print("\nStudent's ID is: \(studentID)") //Unique Student Auto ID
+                                            print("Game Name: \(moduleName)")
                                             guard let gameLevel = moduleDict["Level"] as! Int! else {return}
                                             guard let gameXP = moduleDict["Xp"] as! Int! else {return}
-                                            print("Level: \(gameLevel)")
-                                            print("EXP: \(gameXP)")
                                             let gameLevelInt = Int(gameLevel)
                                             let gameXPInt = Int (gameXP)
-                                            
+                                            print("Level: \(gameLevelInt)")
+                                            print("EXP: \(gameXPInt)")
+                                        
+                                        
                                             //ADD STUFF TO MODULE ARRAY (maybe not here)
                                             
 //VARIABLES OBTAINED FROM FETCHING FROM FIREBASE//////////////////////////////////////////////////////////////////////////////////////////
@@ -192,6 +188,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
 //                                                studentAgeInt       //int - age "5"
 //                                                studentFirstName    //string - firstName "Bob"
 //                                                profileImage        //UIImage - profileImageURL "an image"
+//                                                studentID           //string - student id "-L-JDcrpWxLGsZZMuvOR"
 //                                            Module
 //                                                moduleName          //string - "Game 0"
 //                                                gameLevelInt        //int - level "1"
