@@ -153,7 +153,7 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         //populates answers_boolean with true and false values
         getAnswers(photoArray: PhotoArray_3x3, answers: &answers_boolean, questions: questions_Images)
         
-        if(instructor.students[studentIndex].modules[moduleIndex].xp > 10){
+        if(instructor.students[studentIndex].modules[moduleIndex].level > 1){
             //populates photoArray with random images
             generatePhotoArray(photoArray: &PhotoArray_3x3, photos: objectImages_level2)
             
