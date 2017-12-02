@@ -97,23 +97,20 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         }else{
             let ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
-            print("Current user ID is: \(userID)")
+            print("Current instructor ID is: \(userID)")
             ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 if !snapshot.exists(){
                     print("snapshot does not exist")
                     return
                 }
-                //print (snapshot)
-
                 let instructorData = snapshot.value as! NSDictionary
                 
-                guard let instructorEmail = instructorData["Email"] as! String! else {return}
-
                 //INSTRUCTOR EMAIL
+                guard let instructorEmail = instructorData["Email"] as! String! else {return}
                 instructor.changeEmail(email: instructorEmail)
                 print ("\nCurrently logged in Instructor email is: \(instructor.email)")      //instructor1@gmail.com
 
-//https://stackoverflow.com/questions/38797626/firebase-and-reading-nested-data-using-swift
+                //STUDENT
                     ref.child("Instructors").child(userID!).child("Student").observeSingleEvent(of: .value, with: { (snapshot) in
                         if !snapshot.exists(){
                             print("snapshot does not exist")
@@ -122,60 +119,91 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                         print("\nNumber of student's under \(instructorEmail) is: \(snapshot.childrenCount)")
                         let studentData = snapshot.children
                         while let studentInfo = studentData.nextObject() as? DataSnapshot{
+                            //STUDENT ID
+                            let studentID = studentInfo.key
                             
-                            //ALL EXISTING STUDENT ID
-                            //print(studentInfo.key)
-                            
-                            //store individual student INFO
-                            ref.child("Instructors").child(userID!).child("Student").child("\(studentInfo.key)").observeSingleEvent(of: .value, with: { (snapshot) in
+                            //EACH STUDENNT'S NODE
+                            ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").observeSingleEvent(of: .value, with: { (snapshot) in
                                 if !snapshot.exists(){
                                     print("snapshot does not exist")
                                     return
                                 }
                                 let studentDict = snapshot.value as! NSDictionary
-                                
-                                //Unique Student Auto ID
-                                print("\nStudent's ID is: \(studentInfo.key)")
-                                //AGE (need to convert from string to int)
-                                guard let studentAge = studentDict["Age"] as! String! else {return}
-                                print ("Student's age is: \(studentAge)")
-                                //FIRSTNAME
-                                guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
-                                print ("Student's First Name is: \(studentFirstName)")
-                                //LASTNAME
-                                guard let studentLastName = studentDict["Last_Name"] as! String! else {return}
-                                print ("Student's Last Name is: \(studentLastName)")
-                                //PROFILE IMAGE URL
-                                guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
-                                print ("Student's profile image is stored here: \(profileImageURL)")
-//                                let storageRef = Storage.storage().reference(forURL: profileImageURL)
-//                                storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) -> Void in
-//                                    let pic = UIImage(data: data!)
-//                                }
-//                                //MODULE
-//                                ref.child("Instructors").child(userID!).child("Student").child("\(studentInfo.key)").observeSingleEvent(of: .value, with: { (snapshot) in
-//                                    if !snapshot.exists(){
-//                                        print("snapshot does not exist")
-//                                        return
-//                                    }
-//                                    print("\nNumber of Modules student with ID: \(studentInfo.key) have: \(snapshot.childrenCount)")
-//                                    let moduleData = snapshot.children
-//                                    while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
-//                                        print (studentModuleInfo.key)
-//                                        print("\nStudent's moudule contains: \(studentModuleInfo.key)")
-//                                    }
-//
-//                                }
-                                
-                                
-                                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>))
+
+                                //AGE,FIRST NAME, PROFILE IMAGE, MODULE
+                                ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").child("Modules").observeSingleEvent(of: .value, with: { (snapshot) in
+                                    if !snapshot.exists(){
+                                        print("snapshot does not exist")
+                                        return
+                                    }
+                                    
+                                    //Module Name "Game 0, Game 1, Game 2"
+                                    let moduleData = snapshot.children
+                                    while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
+                                        
+                                        let moduleName = studentModuleInfo.key
+
+                                        ref.child("Instructors").child(userID!).child("Student").child("\(studentID)").child("Modules").child("\(moduleName)").observeSingleEvent(of: .value, with: { (snapshot) in
+                                            if !snapshot.exists(){
+                                                print("snapshot does not exist")
+                                                return
+                                            }
+                                            print("\nStudent's ID is: \(studentID)") //Unique Student Auto ID
+                                            
+                                            //AGE
+                                            guard let studentAge = studentDict["Age"] as! String! else {return}
+                                            let studentAgeInt = Int(studentAge)
+                                            print ("Student's age is: \(studentAgeInt!)")
+                                            
+                                            //FIRSTNAME
+                                            guard let studentFirstName = studentDict["First_Name"] as! String! else {return}
+                                            print ("Student's First Name is: \(studentFirstName)")
+                                            
+                                            //PROFILE IMAGE URL
+                                            guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
+                                            print ("Student's profile image is stored here: \(profileImageURL)")
+                                            let storageRef = Storage.storage().reference(forURL: profileImageURL)
+                                            storageRef.downloadURL(completion: { (url, error) in
+                                                let optData = try? Data(contentsOf: url!)
+                                                guard let data = optData else{return}
+                                                let profileImage = UIImage(data: data as Data)
+                                                
+                                            })
+                                            
+                                            print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
+                                            print("\(moduleName)")
+                                            
+                                            let moduleDict = snapshot.value as! NSDictionary
+
+                                            guard let gameLevel = moduleDict["Level"] as! Int! else {return}
+                                            guard let gameXP = moduleDict["Xp"] as! Int! else {return}
+                                            print("Level: \(gameLevel)")
+                                            print("EXP: \(gameXP)")
+                                            let gameLevelInt = Int(gameLevel)
+                                            let gameXPInt = Int (gameXP)
+                                            
+                                            //ADD STUFF TO MODULE ARRAY (maybe not here)
+                                            
+//VARIABLES OBTAINED FROM FETCHING FROM FIREBASE//////////////////////////////////////////////////////////////////////////////////////////
+//                                            Student
+//                                                studentAgeInt       //int - age "5"
+//                                                studentFirstName    //string - firstName "Bob"
+//                                                profileImage        //UIImage - profileImageURL "an image"
+//                                            Module
+//                                                moduleName          //string - "Game 0"
+//                                                gameLevelInt        //int - level "1"
+//                                                gameXPInt           //int - xp "60"
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    
+                                        }, withCancel: nil)
+                                    }
+                                }, withCancel: nil)
+                                //ADD STUFF TO INSTRUCTOR CLASS (maybe not here)
+                                //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>, studentID: <#T##String#>))
                             }, withCancel: nil)
-                            //while loop will iterate thru all the student nodes.
                         }// END OF LOOP iterating through all the students
 
                     }, withCancel: nil)
-                
-              
                 
             }, withCancel: nil)
         }

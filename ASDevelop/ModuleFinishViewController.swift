@@ -63,7 +63,7 @@ class ModuleFinishViewController: UIViewController {
         //s==============STORE GAME DATA name, level, exp==================
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser!.uid
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("\(selectedModule)")
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("Game \(selectedModule)")
 
         //Save XP and Level under the specific game Module
         let gameNode = ["Xp": instructor.students[studentIndex].modules[moduleIndex].xp,
