@@ -171,7 +171,10 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                             })
                                             
                                             print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
-                                            print("\(moduleName)")
+                                            print("Game Name: \(moduleName)")
+                                            //0 - emtional recognition
+                                            //1 - visual perception
+                                            //2 - motor control
                                             
                                             let moduleDict = snapshot.value as! NSDictionary
 
