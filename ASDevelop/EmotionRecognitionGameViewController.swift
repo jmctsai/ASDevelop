@@ -280,7 +280,7 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     
     func quizFinished()
     {
-        instructor.students[studentIndex].modules[moduleIndex].addXP(xp: XP) //!!!*10 for testing only!!!
+        //instructor.students[studentIndex].modules[moduleIndex].addXP(xp: XP) //!!!*10 for testing only!!!
         presentModuleFinishScreen(xpGained: XP)
     }
     
