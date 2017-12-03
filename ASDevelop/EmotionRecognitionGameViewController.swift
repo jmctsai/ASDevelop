@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
-import FirebaseDatabase
 import AVFoundation
 
 class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate {
-    
+    let cireView = circularTimer.init(frame: CGRect(x:10.0,y:10.0,width : 50.0,height : 50.0))
     var quizNumber = 0
     var moduleIndex = 0
     var studentIndex = 0
@@ -45,7 +43,7 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     let totalQuestions = 10
     var currentQuestion = 0
     var correctAnswer = 0
-    var answersCorrect = 0
+    
     
     //answer buttons
     @IBOutlet weak var Button1: UIButton!
@@ -58,46 +56,47 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     var correctSound:AVAudioPlayer?
     var incorrectSound:AVAudioPlayer?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        ModuleProgressField.isUserInteractionEnabled = false
-        
-        Button1.layer.cornerRadius = 10
-        Button2.layer.cornerRadius = 10
-        Button3.layer.cornerRadius = 10
-        
-        initQA()
-        //prepare sounds
-        do {
-            correctSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "positive", ofType: "wav")!))
-            correctSound?.prepareToPlay()
-            
-            incorrectSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "negative", ofType: "wav")!))
-            incorrectSound?.prepareToPlay()
-        } catch {
-            print(error)
-        }
-        
-        nextQuestion()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    /*----------------------------*/
+    //variables for the count down timer and checkmark
+    var XP = 0 //Xp gained, 2xp if answered correctly in the firsrt 10 seconds, 1xp if answered correctly in the second 10 secs
+    var round = 0  //student has two chance, 10 seconds each
+    var outOfTime = false  //when outOfTime = true, load next question
+    var firstTimerDone = false;
+    var stopTimer = false
+    var checkmark = true
+    /*----------------------------*/
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        
+        stopTimer = true
         if sender.tag == correctAnswer {
-            answersCorrect = answersCorrect + 1
+            
+            //+2 xp if answered within the first 10 seconds
+            if (round < 1){
+                XP += 2
+            }
+            else{
+                XP += 1
+            }
+            checkmark = true
             correctSound?.volume = instructor.volume
             correctSound?.play()
-        } else {
+        }
+        else {
+            checkmark = false
             incorrectSound?.volume = instructor.volume
             incorrectSound?.play()
         }
+        print("current xp: ", XP)
+        showRightorWrong()
+        //put a 1 sec delay
+        //display a check mark or a red cross for 1 sec after each question, then load the next question
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.loadNext()
+        })
         
-        if currentQuestion < totalQuestions {
+    }
+    func loadNext(){
+        if ((currentQuestion < totalQuestions)) {
             nextQuestion()
         } else {
             quizFinished()
@@ -146,7 +145,7 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
         Button1.setTitle(answer1, for: .normal)
         Button2.setTitle(answer2, for: .normal)
         Button3.setTitle(answer3, for: .normal)
-        
+        creatCire() //create a count down timer for each question
         currentQuestion = currentQuestion + 1
     }
     func initQA() {
@@ -195,10 +194,94 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
         thirdLevel.shuffle()
         
     }
+    // Define a view
+    var popup:UIView!
+    func showRightorWrong() {
+        // customise your view
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+        if(checkmark){
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "checkmark"))
+        }
+        else{
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "crossmark"))
+        }
+        popup.center = self.view.center
+        popup.contentMode = .scaleAspectFit
+        // show on screen
+        self.view.addSubview(popup)
+        
+        // set the timer so the view will display for 1 seconds
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAlert), userInfo: nil, repeats: false)
+    }
+    
+    @objc func dismissAlert(){
+        if popup != nil { // Dismiss the view from here
+            popup.removeFromSuperview()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initQA()
+        //prepare sounds
+        do {
+            correctSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "positive", ofType: "wav")!))
+            correctSound?.prepareToPlay()
+            
+            incorrectSound = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "negative", ofType: "wav")!))
+            incorrectSound?.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        nextQuestion()
+    }
+    
+    //create a circular timer
+    func creatCire(){
+        round = 0
+        self.view.addSubview(cireView)
+        self.cireView.value = 0
+        self.cireView.maximumValue = 100
+        self.cireView.backgroundColor = UIColor.clear
+        self.cireView.frame = CGRect(x:40, y:40, width:80,height: 80)
+        repeatdraw()
+    }
+    
+    //a count down timer that will run twice
+    //if user do not response before the second timer finished, then the next question will be loaded
+    @objc func repeatdraw(){
+        if (stopTimer){ //button hitted
+            stopTimer = false
+            return
+        }
+        self.cireView.value += 2
+        if self.cireView.value == 100 {
+            round += 1
+            if (round == 1){
+                self.cireView.value = 0
+            }
+            else if (round == 2){
+                checkmark = false
+                showRightorWrong()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    self.loadNext()
+                })
+                return
+            }
+        }
+        self.perform(#selector(EmotionRecognitionViewController.repeatdraw), with: self, afterDelay: 0.2)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     func quizFinished()
     {
-        presentModuleFinishScreen(xpGained: answersCorrect)
+        instructor.students[studentIndex].modules[moduleIndex].addXP(xp: XP) //!!!*10 for testing only!!!
+        presentModuleFinishScreen(xpGained: XP)
     }
     
     //present module finish screen after quiz is done

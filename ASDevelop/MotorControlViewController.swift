@@ -28,6 +28,17 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
     var timer: Timer?
     var secondsLeft = 10.0
     
+    /*----------------------------*/
+    //variables for the count down timer and checkmark
+    let cireView = circularTimer.init(frame: CGRect(x:10.0,y:10.0,width : 50.0,height : 50.0))
+    var XP = 0 //Xp gained, 2xp if answered correctly in the firsrt 10 seconds, 1xp if answered correctly in the second 10 secs
+    var round = 0  //student has two chance, 10 seconds each
+    var outOfTime = false  //when outOfTime = true, load next question
+    var firstTimerDone = false;
+    var stopTimer = false
+    var checkmark = true
+    /*----------------------------*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,14 +98,14 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         TargetImage.frame.origin.y = CGFloat(randomYTarget)
         
         secondsLeft = 10.0
-        runTimer()
+        creatCire()
     }
 
     func doneQuestion(correct: Bool) {
-        if timer != nil {
+        /*if timer != nil {
             timer?.invalidate()
             timer = nil
-        }
+        }*/
         
         if correct {
             xpGained = xpGained + 1
@@ -119,8 +130,48 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         }
 
     }
+    //create a circular timer
+    func creatCire(){
+        round = 0
+        self.view.addSubview(cireView)
+        self.cireView.value = 0
+        self.cireView.maximumValue = 100
+        self.cireView.backgroundColor = UIColor.clear
+        self.cireView.frame = CGRect(x:40, y:40, width:80,height: 80)
+        repeatdraw()
+    }
     
-    func runTimer() {
+    //a count down timer that will run twice
+    //if user do not response before the second timer finished, then the next question will be loaded
+    @objc func repeatdraw(){
+        if TargetImage.frame.midX < PointerObject.frame.maxX && TargetImage.frame.midX > PointerObject.frame.minX && TargetImage.frame.midY < PointerObject.frame.maxY && TargetImage.frame.midY > PointerObject.frame.minY {
+            stopTimer = true
+            checkmark = true
+            showRightorWrong()
+            //put a 1 sec delay
+            //display a check mark or a red cross for 1 sec after each question, then load the next question
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                 self.doneQuestion(correct: true)
+            })
+           
+        }
+        if (stopTimer){ //correct answer
+            stopTimer = false
+            return
+        }
+        self.cireView.value += 2
+        if self.cireView.value == 100 {
+            self.cireView.value = 0
+            showRightorWrong()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.doneQuestion(correct: false)
+            })
+            return
+        }
+        
+        self.perform(#selector(EmotionRecognitionViewController.repeatdraw), with: self, afterDelay: 0.2)
+    }
+    /*func runTimer() {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
         }
@@ -136,13 +187,38 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         if secondsLeft <= 0.0 {
             doneQuestion(correct: false)
         }
+    }*/
+    
+    // Define a view
+    var popup:UIView!
+    func showRightorWrong() {
+        // customise your view
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+        if(checkmark){
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "checkmark"))
+        }
+        else{
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "crossmark"))
+        }
+        popup.center = self.view.center
+        popup.contentMode = .scaleAspectFit
+        // show on screen
+        self.view.addSubview(popup)
+        
+        // set the timer so the view will display for 1 seconds
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAlert), userInfo: nil, repeats: false)
+    }
+    @objc func dismissAlert(){
+        if popup != nil { // Dismiss the view from here
+            popup.removeFromSuperview()
+        }
     }
     
     func quizFinish() {
-        if timer != nil {
+        /*if timer != nil {
             timer?.invalidate()
             timer = nil
-        }
+        }*/
         
         presentModuleFinishScreen(xpGained: xpGained)
     }
