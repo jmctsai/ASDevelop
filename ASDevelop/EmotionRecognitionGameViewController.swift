@@ -298,6 +298,6 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
         //Change the view to the new view
         self.present(ModuleFinishViewController, animated: true, completion: nil)
     }
-    
+        
 }
 
