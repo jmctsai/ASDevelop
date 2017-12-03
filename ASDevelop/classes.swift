@@ -90,7 +90,7 @@ class TimedXP {
 }
 
 struct GlobalModules {
-    static var names:[String] = ["Emotion Identification", "Visual Perception", "Motion Control"]
+    static var names:[String] = ["Emotion Identification", "Visual Perception", "Motor Control"]
     static var modulePhotos:[UIImage?] = [UIImage(named: "EmotionModule"), UIImage(named: "VisualModule"), UIImage(named: "MotorModule")]
     static var startPhotos:[UIImage?] = [UIImage(named: "EmotionStart"), UIImage(named: "VisualStart"), UIImage(named: "MotorStart")]
 }

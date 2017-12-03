@@ -91,6 +91,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     //Initialize the new instructor class
     func initializeInstructor() {
         instructor = Instructor()
+        instructor.volume = 0.5
         
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(handleLogout),with: nil, afterDelay: 0)

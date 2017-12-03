@@ -189,7 +189,6 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     
     //updates class variables and return to modules
     func quizFinished(){
-        instructor.students[studentIndex].modules[moduleIndex].addXP(xp: xpGained)
         presentModuleFinishScreen(xpGained: answersCorrect)
     }
     

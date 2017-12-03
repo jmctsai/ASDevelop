@@ -52,7 +52,7 @@ class NewStudentViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerController.delegate = self
         
         
-        let actionSheet = UIAlertController(title:"Photo Source", message: "Choose Source", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title:"Photo Source", message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             

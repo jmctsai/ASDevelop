@@ -74,7 +74,7 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
 //            //module ID
 //            //0 = "Emotion Identification"
 //            //1 = "Visual Perception"
-//            //2 = "Motion Control"
+//            //2 = "Motor Control"
 //            print("Selected Game type : \(self.selectedModule)")
 //            print("Saved selected game type of 0,1,2 successfully into Firebase DB")
 //        })

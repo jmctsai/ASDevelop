@@ -44,6 +44,8 @@ class ModuleFinishViewController: UIViewController {
     }
     
     func reloadValues() {
+        instructor.students[studentIndex].modules[moduleIndex].addXP(xp: xpGained)
+        
         XPGainedField.text = "+" + String(xpGained) + " xp"
         LevelField.text = "Level " + String(instructor.students[studentIndex].modules[moduleIndex].level)
         ModuleNameField.text = instructor.students[studentIndex].modules[moduleIndex].name
