@@ -18,6 +18,8 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     
     @IBOutlet weak var StudentCollectionView: UICollectionView!
     
+    var initializedInstructor = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +27,11 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         self.StudentCollectionView.delegate = self
         self.StudentCollectionView.dataSource = self
 
-        initializeInstructor()
+        if !initializedInstructor {
+            initializeInstructor()
+            initializedInstructor = true
+        }
+        updatePhotoArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,12 +99,14 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
         instructor = Instructor()
         instructor.volume = 0.5
         
+        print("Starting Initialization")
+        
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(handleLogout),with: nil, afterDelay: 0)
         }else{
             let ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
-            print("Current instructor ID is: \(userID)")
+            print("Current instructor ID is: \(userID ?? " ")")
             ref.child("Instructors").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 if !snapshot.exists(){
                     print("snapshot does not exist")
@@ -119,6 +127,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                         }
                         print("\nNumber of student's under \(instructorEmail) is: \(snapshot.childrenCount)")
                         let studentData = snapshot.children
+                        var studentIndex = 0
                         while let studentInfo = studentData.nextObject() as? DataSnapshot{
                             //STUDENT ID
                             let studentID = studentInfo.key
@@ -156,11 +165,15 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                         guard let data = optData else{return}
                                         let profileImage = UIImage(data: data as Data)
                                         
+                                    let newStudent = Student(modules: [Module](), firstName: studentFirstName, age: studentAgeInt!, photo: profileImage, studentID: studentID)
+                                    instructor.addStudent(student: newStudent)
+                                        
                                     })
                                     print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
 
                                     //Module Name "Game 0, Game 1, Game 2"
                                     let moduleData = snapshot.children
+                                    var moduleIndex = 0
                                     while let studentModuleInfo = moduleData.nextObject() as? DataSnapshot{
                                         
                                         let moduleName = studentModuleInfo.key
@@ -181,6 +194,20 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                             print("Level: \(gameLevelInt)")
                                             print("EXP: \(gameXPInt)")
                                         
+                                        var selectedModule = 0
+                                        for name in GlobalModules.names {
+                                            if name == moduleName {
+                                                break
+                                            }
+                                            selectedModule = selectedModule + 1
+                                        }
+                                            
+                                        instructor.students[studentIndex].addModule(module: Module(num: selectedModule))
+                                        instructor.students[studentIndex].modules[moduleIndex].level = gameLevelInt
+                                        instructor.students[studentIndex].modules[moduleIndex].xp = gameXPInt
+                                            
+                                        moduleIndex = moduleIndex + 1
+                                        
                                         
                                             //ADD STUFF TO MODULE ARRAY (maybe not here)
                                             
@@ -198,6 +225,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                     
                                         }, withCancel: nil)
                                     }
+                                    studentIndex = studentIndex + 1
                                 }, withCancel: nil)
                                 //ADD STUFF TO INSTRUCTOR CLASS (maybe not here)
                                 //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>, studentID: <#T##String#>))
