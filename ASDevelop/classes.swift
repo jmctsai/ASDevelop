@@ -200,6 +200,8 @@ extension UIColor {
     }
 }
 
+// Draws a string onto the users profile image
+// Output will always be of size 383x262
 func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
     let textColor = UIColor.white
     let textFont = UIFont(name: "Helvetica Bold", size: 16)!
@@ -224,6 +226,8 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     return newImage!
 }
 
+//Allow conversion from date onject to the number of the day of the week
+// 1 = Sunday, 2 = Monday, ...
 extension Date {
     func dayNumberOfWeek() -> Int? {
         return Calendar.current.dateComponents([.weekday], from: self).weekday! - 1
@@ -240,6 +244,7 @@ extension Array {
     }
 }
 
+// Extension to allow ImageViews to be drag and dropable
 class ObjectView: UIImageView {
     
     override init(frame: CGRect) {
@@ -248,11 +253,13 @@ class ObjectView: UIImageView {
     
     var initialLocation: CGPoint?
     
+    // If user has touched the View save initial location
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         initialLocation = CGPoint(x: (touch?.location(in: self.superview))!.x - self.center.x, y: (touch?.location(in: self.superview))!.y - self.center.y)
     }
     
+    // If the user moves the View change the location
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         self.center = CGPoint(x: ((touch?.location(in: self.superview))?.x)! - initialLocation!.x, y: ((touch?.location(in: self.superview))?.y)! - (initialLocation?.y)!)
