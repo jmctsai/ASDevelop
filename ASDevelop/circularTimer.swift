@@ -15,7 +15,7 @@ class circularTimer: UIView {
             self.setNeedsDisplay()
         }
     }
-    
+     
     var maximumValue: CGFloat = 0 {
         didSet { self.setNeedsDisplay() } 
     }

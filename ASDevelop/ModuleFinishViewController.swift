@@ -62,7 +62,7 @@ class ModuleFinishViewController: UIViewController {
             XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
         } 
         XPCurrentField.text = "\(instructor.students[studentIndex].modules[moduleIndex].xp)/100 xp"
-         
+        
         var selectedModule = 0
         var i = 0
         for moduleName in GlobalModules.names {

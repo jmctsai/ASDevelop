@@ -278,7 +278,7 @@ class EmotionRecognitionViewController: UIViewController, AVAudioPlayerDelegate 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-       
+    
     
     func quizFinished()
     {

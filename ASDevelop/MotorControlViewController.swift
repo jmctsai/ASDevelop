@@ -208,7 +208,7 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         else{
             popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "crossmark"))
         }
-        popup.center = self.view.center
+        popup.center = self.view.center 
         popup.contentMode = .scaleAspectFit
         // show on screen
         self.view.addSubview(popup)
