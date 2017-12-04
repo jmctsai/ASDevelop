@@ -205,7 +205,7 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     let textFont = UIFont(name: "Helvetica Bold", size: 16)!
     
     let scale = UIScreen.main.scale
-    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    UIGraphicsBeginImageContextWithOptions(CGSize(width: 383, height: 262), false, scale)
     
     var textFontAttributes = [NSAttributedStringKey: Any]()
     
@@ -213,9 +213,9 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
         .font: textFont,
         .foregroundColor: textColor,
     ]
-    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: 383, height: 262)))
     
-    let rect = CGRect(origin: point, size: image.size)
+    let rect = CGRect(origin: point, size: CGSize(width: 383, height: 262))
     text.draw(in: rect, withAttributes: textFontAttributes)
     
     let newImage = UIGraphicsGetImageFromCurrentImageContext()

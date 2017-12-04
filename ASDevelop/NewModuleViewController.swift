@@ -80,7 +80,7 @@ class NewModuleViewController: UIViewController, UICollectionViewDelegate, UICol
 //        })
         
         
-        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child("Game \(selectedModule)")
+        let gameReference = ref.child("Instructors").child(userID).child("Student").child("\(instructor.students[studentIndex].studentID)").child("Modules").child((GlobalModules.names[selectedModule]))
         
         //Initialize Game Module with exp and level of 0 on module creation
         let gameNode = ["Xp": 0,

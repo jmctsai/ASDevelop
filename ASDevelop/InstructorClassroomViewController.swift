@@ -19,6 +19,7 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var StudentCollectionView: UICollectionView!
     
     var initializedInstructor = false
+    var newInstructor:Instructor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
             initializeInstructor()
             initializedInstructor = true
         }
-        updatePhotoArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +96,6 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
     
     //Initialize the new instructor class
     func initializeInstructor() {
-        instructor = Instructor()
         instructor.volume = 0.5
         
         print("Starting Initialization")
@@ -127,8 +126,9 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                         }
                         print("\nNumber of student's under \(instructorEmail) is: \(snapshot.childrenCount)")
                         let studentData = snapshot.children
-                        var studentIndex = 0
-                        while let studentInfo = studentData.nextObject() as? DataSnapshot{
+                        var studentIndex = -1
+                        while let studentInfo = studentData.nextObject() as? DataSnapshot {
+                            studentIndex = studentIndex + 1
                             //STUDENT ID
                             let studentID = studentInfo.key
                             
@@ -160,15 +160,23 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                     guard let profileImageURL = studentDict["profileImageURL"] as! String! else {return}
                                     print ("Student's profile image is stored here: \(profileImageURL)")
                                     let storageRef = Storage.storage().reference(forURL: profileImageURL)
+                                    var profileImage:UIImage!
                                     storageRef.downloadURL(completion: { (url, error) in
                                         let optData = try? Data(contentsOf: url!)
                                         guard let data = optData else{return}
-                                        let profileImage = UIImage(data: data as Data)
-                                        
-                                    let newStudent = Student(modules: [Module](), firstName: studentFirstName, age: studentAgeInt!, photo: profileImage, studentID: studentID)
-                                    instructor.addStudent(student: newStudent)
+                                        let image = UIImage(data: data as Data)
+                                        profileImage = image
                                         
                                     })
+                                    
+                                    if profileImage == nil {
+                                        instructor.addStudent(student: Student(modules: [Module](), firstName: studentFirstName, age: studentAgeInt!, photo: UIImage(named: "defaultProfile"), studentID: studentID))
+                                    }
+                                    else
+                                    {
+                                        instructor.addStudent(student: Student(modules: [Module](), firstName: studentFirstName, age: studentAgeInt!, photo: profileImage, studentID: studentID))
+                                    }
+
                                     print("Number of modules student with ID: \(studentID) have is: \(snapshot.childrenCount)")
 
                                     //Module Name "Game 0, Game 1, Game 2"
@@ -201,10 +209,14 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
                                             }
                                             selectedModule = selectedModule + 1
                                         }
-                                            
+                                        print("Selected Module:\(selectedModule)")
+                                        print("Student Index:\(studentIndex)")
+
                                         instructor.students[studentIndex].addModule(module: Module(num: selectedModule))
                                         instructor.students[studentIndex].modules[moduleIndex].level = gameLevelInt
                                         instructor.students[studentIndex].modules[moduleIndex].xp = gameXPInt
+                                            
+                                        print("\(instructor.students.count)")
                                             
                                         moduleIndex = moduleIndex + 1
                                         
@@ -222,18 +234,16 @@ class InstructorClassroomViewController: UIViewController, UICollectionViewDeleg
 //                                                gameLevelInt        //int - level "1"
 //                                                gameXPInt           //int - xp "60"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                    
                                         }, withCancel: nil)
                                     }
-                                    studentIndex = studentIndex + 1
+                                    self.updatePhotoArray()
                                 }, withCancel: nil)
                                 //ADD STUFF TO INSTRUCTOR CLASS (maybe not here)
                                 //instructor.addStudent(student: Student(modules: <#T##[Module]#>, firstName: <#T##String#>, age: <#T##Int#>, photo: <#T##UIImage?#>, studentID: <#T##String#>))
                             }, withCancel: nil)
                         }// END OF LOOP iterating through all the students
-
+                        //Student stops existing here
                     }, withCancel: nil)
-                
             }, withCancel: nil)
         }
     }
