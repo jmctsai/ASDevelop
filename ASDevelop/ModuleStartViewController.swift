@@ -76,6 +76,7 @@ class ModuleStartViewController: UIViewController {
         EmotionRecognitionViewController.studentIndex = studentIndex
         EmotionRecognitionViewController.moduleIndex = moduleIndex
         
+        
         //Change the view to the new view
         self.present(EmotionRecognitionViewController, animated: true, completion: nil)
     }

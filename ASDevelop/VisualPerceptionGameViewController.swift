@@ -72,7 +72,16 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     
     var correctSound:AVAudioPlayer?
     var incorrectSound:AVAudioPlayer?
-    
+    /*----------------------------*/
+    //variables for the count down timer and checkmark
+    let cireView = circularTimer.init(frame: CGRect(x:10.0,y:10.0,width : 50.0,height : 50.0))
+    var XP = 0 //Xp gained, 2xp if answered correctly in the firsrt 10 seconds, 1xp if answered correctly in the second 10 secs
+    var round = 0  //student has two chance, 10 seconds each
+    var outOfTime = false  //when outOfTime = true, load next question
+    var firstTimerDone = false;
+    var stopTimer = false
+    var checkmark = true
+    /*----------------------------*/
     
     //couldnt figure out how to make an array with size 9 so i just used apple.png as placeholders
     var PhotoArray_3x3:[UIImage] = [UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,UIImage(named: "apple.png")!,
@@ -136,7 +145,41 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         nextQuestion()
         // Do any additional setup after loading the view.
     }
+    //create a circular timer
+    func creatCire(){
+        round = 0
+        self.view.addSubview(cireView)
+        self.cireView.value = 0
+        self.cireView.maximumValue = 100
+        self.cireView.backgroundColor = UIColor.clear
+        self.cireView.frame = CGRect(x:40, y:40, width:80,height: 80)
+        repeatdraw()
+    }
     
+    //a count down timer that will run twice
+    //if user do not response before the second timer finished, then the next question will be loaded
+    @objc func repeatdraw(){
+        if (stopTimer){ //button hitted
+            stopTimer = false
+            return
+        }
+        self.cireView.value += 2
+        if self.cireView.value == 100 {
+            round += 1
+            if (round == 1){
+                self.cireView.value = 0
+            }
+            else if (round == 2){
+                checkmark = false
+                showRightorWrong()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    self.loadNext()
+                })
+                return
+            }
+        }
+        self.perform(#selector(EmotionRecognitionViewController.repeatdraw), with: self, afterDelay: 0.2)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -182,14 +225,15 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         
         //for now the string can be changed in the app which isnt good
         ModuleProgressField.text = String(currentQuestion + 1)
-        
+        //create a count down timer for each question
+        creatCire()
         //increment question counter
         currentQuestion = currentQuestion + 1
     }
     
     //updates class variables and return to modules
     func quizFinished(){
-        presentModuleFinishScreen(xpGained: answersCorrect)
+        presentModuleFinishScreen(xpGained: XP)
     }
     
     //these functions change the color of the checkboxes
@@ -281,23 +325,62 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
         //else prompt next question
         //if this is the last question end the quiz
         
+        stopTimer = true
         //if the answers are correct
         if(responses_boolean[0] == answers_boolean[0])&&(responses_boolean[1] == answers_boolean[1])&&(responses_boolean[2] == answers_boolean[2]){
             correctSound?.volume = instructor.volume
             correctSound?.play()
-            xpGained = xpGained + 1
+            checkmark = true
+            //+2 xp if answered within the first 10 seconds
+            if (round < 1){
+                XP += 2
+            }
+            else{
+                XP += 1
+            }
             answersCorrect = answersCorrect + 1
         }
         else{
+            checkmark = false
             incorrectSound?.volume = instructor.volume
             incorrectSound?.play()
         }
-        
-        if(currentQuestion <= totalQuestions - 1 ){
+        showRightorWrong()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.loadNext()
+        })
+    }
+    func loadNext(){
+        if ((currentQuestion < totalQuestions)) {
             nextQuestion()
+        } else {
+            quizFinished()
+        }
+    }
+    
+    // Define a view that flash check mark or cross mark
+    var popup:UIView!
+    func showRightorWrong() {
+        // customise your view
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+        if(checkmark){
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "checkmark"))
         }
         else{
-            quizFinished()
+            popup.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "crossmark"))
+        }
+        popup.center = self.view.center
+        popup.contentMode = .scaleAspectFit
+        // show on screen
+        self.view.addSubview(popup)
+        
+        // set the timer so the view will display for 1 seconds
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAlert), userInfo: nil, repeats: false)
+    }
+    
+    @objc func dismissAlert(){
+        if popup != nil { // Dismiss the view from here
+            popup.removeFromSuperview()
         }
     }
     
