@@ -17,7 +17,7 @@ class circularTimer: UIView {
     }
     
     var maximumValue: CGFloat = 0 {
-        didSet { self.setNeedsDisplay() }
+        didSet { self.setNeedsDisplay() } 
     }
     override init(frame: CGRect) {
         super.init(frame: frame)  

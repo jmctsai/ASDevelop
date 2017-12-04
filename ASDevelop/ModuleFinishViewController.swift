@@ -60,7 +60,7 @@ class ModuleFinishViewController: UIViewController {
         }
         if (instructor.students[studentIndex].modules[moduleIndex].xp != 0){ //if the xp vale is not 0
             XPProgressBar.image = createProgressBar(hexBGColor: "1029AF", hexFGColor: "1F82E7", width: Int(564.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp) / 100.0), height: Int(XPProgressBar.frame.height), xp: Int(100.0 * Double(instructor.students[studentIndex].modules[moduleIndex].xp - xpGained) / Double(instructor.students[studentIndex].modules[moduleIndex].xp)))
-        }
+        } 
         XPCurrentField.text = "\(instructor.students[studentIndex].modules[moduleIndex].xp)/100 xp"
          
         var selectedModule = 0

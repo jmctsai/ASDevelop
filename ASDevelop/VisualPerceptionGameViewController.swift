@@ -233,7 +233,7 @@ class VisualPerceptionViewController: UIViewController, AVAudioPlayerDelegate {
     
     //updates class variables and return to modules
     func quizFinished(){
-        presentModuleFinishScreen(xpGained: XP)  
+        presentModuleFinishScreen(xpGained: XP)   
     }
     
     //these functions change the color of the checkboxes
