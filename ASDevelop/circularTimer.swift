@@ -20,7 +20,7 @@ class circularTimer: UIView {
         didSet { self.setNeedsDisplay() }
     }
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: frame)  
         self.backgroundColor = UIColor.red
         self.isOpaque = false
     }

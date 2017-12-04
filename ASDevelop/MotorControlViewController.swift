@@ -219,7 +219,7 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
     @objc func dismissAlert(){
         if popup != nil { // Dismiss the view from here
             popup.removeFromSuperview()
-        }
+        } 
     }
     func quizFinish() {
         /*if timer != nil {

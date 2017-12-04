@@ -66,7 +66,7 @@ class ModuleStartViewController: UIViewController {
         
     }
     
-    //present login screen after successfully logged in
+    //present login screen after successfully logged in  
     func presentEmotionRecognitionScreen() {
         
         //Create the new view
