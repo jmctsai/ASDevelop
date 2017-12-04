@@ -91,6 +91,9 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     func doneQuestion(correct: Bool) {
+        
+        PointerObject.removeFromSuperview()
+        
         if timer != nil {
             timer?.invalidate()
             timer = nil
@@ -108,6 +111,8 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         
         // Wait for sound to finish playing, 0.6s
         usleep(600000)
+        
+        self.view.addSubview(PointerObject)
         
         currentQuestion = currentQuestion + 1
         
