@@ -116,7 +116,7 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         
         // If correct xp is gained
         if correct {
-            xpGained = xpGained + 1
+            xpGained = xpGained + 2
             correctSound?.play()
         }
         else {

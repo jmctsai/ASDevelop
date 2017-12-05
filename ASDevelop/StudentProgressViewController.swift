@@ -221,7 +221,7 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
         var yAxisXpArray = [-1, -1, -1, -1, -1, -1, -1]
         var yAxisPosArray = [-1, -1, -1, -1, -1, -1, -1]
         let xAxisPosArray = [145, 252, 356, 467, 570, 675, 787]
-        var yAxisInt = [0, 3, 6, 9, 12]
+        var yAxisInt = [0, 5, 10, 15, 20]
         
         if instructor.students[studentIndex!].modules.count == 0 {
             GraphImageView.image = UIImage(named:"GraphTemplate.png")!
@@ -263,7 +263,7 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
             }
 
             // Set the maximum y axis xp value to 12
-            yMax = 12
+            yMax = 20
             
             // Size of the image graph area
             let yMaxPixel = 430.0
@@ -280,13 +280,12 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
             updateGraphAxis(yValues: yAxisInt, xArray: rateSelection)
             
         }
-        // TO BE COMPLETED IN VERSION 3
         else if rateSelection == 1
         {
             let maxXp = 0
             
-            if maxXp <= 10 {
-                yMax = 12
+            if maxXp <= 20 {
+                yMax = 20
             }
             else {
                 yMax = Int(Double(maxXp) / Double(4)) * 4 + 4
@@ -296,8 +295,8 @@ class StudentProgressViewController: UIViewController, UITableViewDataSource, UI
                 yAxisInt[i] = (yMax / 4) * i
             }
             
-            if maxXp <= 10 || rateSelection == 0 {
-                yMax = 12
+            if maxXp <= 20 || rateSelection == 0 {
+                yMax = 20
             }
             else {
                 yMax = Int(Double(maxXp) / Double(4)) * 4 + 4
