@@ -215,7 +215,7 @@ class MotorControlViewController: UIViewController, AVAudioPlayerDelegate {
         
         // set the timer so the view will display for 1 seconds
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAlert), userInfo: nil, repeats: false)
-    } 
+    }
     @objc func dismissAlert(){
         if popup != nil { // Dismiss the view from here
             popup.removeFromSuperview()

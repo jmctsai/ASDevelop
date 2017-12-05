@@ -704,10 +704,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ModuleDoneBackground" translatesAutoresizingMaskIntoConstraints="NO" id="JoE-0T-4AQ">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzY-a5-jFv">
                                 <rect key="frame" x="348.5" y="540" width="327" height="70"/>
                                 <constraints>
@@ -1484,7 +1480,6 @@
         <image name="EmotionStart" width="434" height="320"/>
         <image name="GraphTemplate" width="877" height="526"/>
         <image name="LogoBig" width="327" height="327"/>
-        <image name="ModuleDoneBackground" width="1024" height="768"/>
         <image name="ModuleProgress" width="72" height="70"/>
         <image name="ProgressIcon" width="56" height="56"/>
         <image name="SettingsIcon" width="56" height="56"/>
