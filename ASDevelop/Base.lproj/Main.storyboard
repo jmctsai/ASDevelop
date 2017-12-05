@@ -74,7 +74,9 @@
                                                     <constraint firstAttribute="width" constant="100" id="cdB-VB-81i"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <state key="normal" title="Sign-up"/>
+                                                <state key="normal" title="Sign-up">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <segue destination="Wso-nl-sdu" kind="presentation" identifier="registerView" id="uWe-3m-2G3"/>
                                                 </connections>
@@ -145,6 +147,7 @@
                                     <constraint firstAttribute="width" constant="340" id="P47-kH-LKu"/>
                                     <constraint firstAttribute="height" constant="30" id="xUb-oR-y2y"/>
                                 </constraints>
+                                <color key="minimumTrackTintColor" red="0.090563906081780776" green="1" blue="0.094748768284897533" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovh-NX-TYK" userLabel="Confirm">
                                 <rect key="frame" x="877" y="646" width="72" height="57"/>
@@ -173,6 +176,30 @@
                                     <constraint firstAttribute="width" constant="81" id="kck-KP-R55"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ril-7V-vs3" userLabel="FirstName">
+                                <rect key="frame" x="70" y="249" width="327" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.12523368000000001" green="0.38340383770000003" blue="0.90404272080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Update Email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="g8t-9y-v0l" userLabel="FirstName">
+                                <rect key="frame" x="70" y="329" width="327" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.12523368000000001" green="0.38340383770000003" blue="0.90404272080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Update Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="J3o-L9-Akf" userLabel="FirstName">
+                                <rect key="frame" x="70" y="408" width="327" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.12523368000000001" green="0.38340383770000003" blue="0.90404272080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.11009805649518967" green="0.56524413824081421" blue="0.90576452016830444" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -190,6 +217,9 @@
                         <viewLayoutGuide key="safeArea" id="Sg9-de-BHy"/>
                     </view>
                     <connections>
+                        <outlet property="currentPassword" destination="ril-7V-vs3" id="khN-fZ-wMU"/>
+                        <outlet property="email" destination="g8t-9y-v0l" id="fSw-2D-bF0"/>
+                        <outlet property="password" destination="J3o-L9-Akf" id="2cg-6K-94l"/>
                         <outlet property="volumeSlider" destination="jrk-CI-L2r" id="XRc-DS-Xap"/>
                     </connections>
                 </viewController>
